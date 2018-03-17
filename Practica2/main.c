@@ -11,6 +11,8 @@ int main () {
 		printf ("1- Nova partida\n");
 		printf ("2- Mostrar ranquing\n");
 		printf ("3- Sortir\n");
+        printf ("Opcio: ");
+        scanf ("%c", &opcio);
 		
 		switch (opcio) {
 			case '1': // Nova partida
@@ -30,12 +32,12 @@ int main () {
 					//Donem l'ordre d'escriure el text de benvinguda
 					al_draw_textf(LS_allegro_get_font(NORMAL),LS_allegro_get_color(WHITE),140,100,0,"%s","Benvingut a Allegro! Prem ESC per sortir...");
 				
-					//Pintem la pantalla de la finestra gr‡fica
+					//Pintem la pantalla de la finestra gr√†fica
 					LS_allegro_clear_and_paint(BLACK);
 				}
 				
 				
-				//Tanquem la finestra gr‡fica
+				//Tanquem la finestra gr√†fica
 				LS_allegro_exit();
 				break;
 			case '2': // Mostrar ranquing

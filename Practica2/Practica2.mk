@@ -5,8 +5,8 @@
 ## Debug
 ProjectName            :=Practica2
 ConfigurationName      :=Debug
-WorkspacePath          :=C:/Users/PGM/Documents/Projecte_Base_Windows_17-18/Projecte_Base_Windows_17-18/Projecte_Base_Windows/Practica2
-ProjectPath            :=C:/Users/PGM/Documents/Projecte_Base_Windows_17-18/Projecte_Base_Windows_17-18/Projecte_Base_Windows/Practica2
+WorkspacePath          :=C:/Users/PGM/Documents/practica2_buscamines/Practica2
+ProjectPath            :=C:/Users/PGM/Documents/practica2_buscamines/Practica2
 IntermediateDirectory  :=./Debug
 OutDir                 := $(IntermediateDirectory)
 CurrentFileName        :=
@@ -94,7 +94,7 @@ PreBuild:
 ## Objects
 ##
 $(IntermediateDirectory)/LS_allegro.c$(ObjectSuffix): LS_allegro.c $(IntermediateDirectory)/LS_allegro.c$(DependSuffix)
-	$(CC) $(SourceSwitch) "C:/Users/PGM/Documents/Projecte_Base_Windows_17-18/Projecte_Base_Windows_17-18/Projecte_Base_Windows/Practica2/LS_allegro.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/LS_allegro.c$(ObjectSuffix) $(IncludePath)
+	$(CC) $(SourceSwitch) "C:/Users/PGM/Documents/practica2_buscamines/Practica2/LS_allegro.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/LS_allegro.c$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/LS_allegro.c$(DependSuffix): LS_allegro.c
 	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/LS_allegro.c$(ObjectSuffix) -MF$(IntermediateDirectory)/LS_allegro.c$(DependSuffix) -MM LS_allegro.c
 
@@ -102,7 +102,7 @@ $(IntermediateDirectory)/LS_allegro.c$(PreprocessSuffix): LS_allegro.c
 	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/LS_allegro.c$(PreprocessSuffix) LS_allegro.c
 
 $(IntermediateDirectory)/main.c$(ObjectSuffix): main.c $(IntermediateDirectory)/main.c$(DependSuffix)
-	$(CC) $(SourceSwitch) "C:/Users/PGM/Documents/Projecte_Base_Windows_17-18/Projecte_Base_Windows_17-18/Projecte_Base_Windows/Practica2/main.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.c$(ObjectSuffix) $(IncludePath)
+	$(CC) $(SourceSwitch) "C:/Users/PGM/Documents/practica2_buscamines/Practica2/main.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.c$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/main.c$(DependSuffix): main.c
 	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/main.c$(ObjectSuffix) -MF$(IntermediateDirectory)/main.c$(DependSuffix) -MM main.c
 
