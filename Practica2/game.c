@@ -49,7 +49,7 @@ void startGame (Taulell taulell) {
         }
         
         //Donem l'ordre d'escriure el text de benvinguda
-        al_draw_textf(LS_allegro_get_font(SMALL),LS_allegro_get_color(WHITE),20,20,0,"%s","Benvingut a Allegro! Prem ESC per sortir...");
+        al_draw_textf(LS_allegro_get_font(NORMAL),LS_allegro_get_color(WHITE),140,100,0,"%s","Benvingut a Allegro! Prem ESC per sortir...");
 
         //Pintem la pantalla de la finestra gràfica
         LS_allegro_clear_and_paint(BLACK);
