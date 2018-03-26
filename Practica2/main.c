@@ -3,11 +3,11 @@
 #include <string.h>
 #include "LS_allegro.h"
 #include "game.h"
+#include "ranking.h"
 
 
 int main () {
     FILE *f_taulell;
-    //FILE *f_ranking;
     Player player;
     char opcio;
     
@@ -41,7 +41,7 @@ int main () {
                         printf ("txt: %s\n", player.nom_taulell);
                         f_taulell = fopen (player.nom_taulell, "w");
                         if (!f_taulell) {
-                            printf ("Error, no es troba el fitxer %s!\n", player.nom_taulell);
+                            printf ("\nError, no es troba el fitxer %s!\n\n", player.nom_taulell);
                         }
                     } while (!f_taulell);
                     
@@ -53,7 +53,7 @@ int main () {
 
 				break;
 			case '2': // Mostrar ranquing
-			
+                mostrarRanking ();
 				break;
 				
 			case '3': // Sortir

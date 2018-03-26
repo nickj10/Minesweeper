@@ -62,7 +62,7 @@ AS       := C:/MinGW-4.8.1/bin/as.exe
 ## User defined environment variables
 ##
 CodeLiteDir:=C:\Program Files\CodeLite
-Objects0=$(IntermediateDirectory)/LS_allegro.c$(ObjectSuffix) $(IntermediateDirectory)/game.c$(ObjectSuffix) $(IntermediateDirectory)/main.c$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/ranking.c$(ObjectSuffix) $(IntermediateDirectory)/LS_allegro.c$(ObjectSuffix) $(IntermediateDirectory)/game.c$(ObjectSuffix) $(IntermediateDirectory)/main.c$(ObjectSuffix) 
 
 
 
@@ -93,6 +93,14 @@ PreBuild:
 ##
 ## Objects
 ##
+$(IntermediateDirectory)/ranking.c$(ObjectSuffix): ranking.c $(IntermediateDirectory)/ranking.c$(DependSuffix)
+	$(CC) $(SourceSwitch) "C:/Users/PGM/Documents/practica2_buscamines/Practica2/ranking.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/ranking.c$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/ranking.c$(DependSuffix): ranking.c
+	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/ranking.c$(ObjectSuffix) -MF$(IntermediateDirectory)/ranking.c$(DependSuffix) -MM ranking.c
+
+$(IntermediateDirectory)/ranking.c$(PreprocessSuffix): ranking.c
+	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/ranking.c$(PreprocessSuffix) ranking.c
+
 $(IntermediateDirectory)/LS_allegro.c$(ObjectSuffix): LS_allegro.c $(IntermediateDirectory)/LS_allegro.c$(DependSuffix)
 	$(CC) $(SourceSwitch) "C:/Users/PGM/Documents/practica2_buscamines/Practica2/LS_allegro.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/LS_allegro.c$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/LS_allegro.c$(DependSuffix): LS_allegro.c
