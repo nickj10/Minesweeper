@@ -1,14 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "LS_allegro.h"
 #include "game.h"
 
+
 int main () {
     FILE *f_taulell;
-    FILE *f_ranking;
-	char opcio;
-	int nSortir = 0;
+    //FILE *f_ranking;
     Player player;
+    char opcio;
     
 	while (opcio != '3') {
 		
@@ -36,35 +37,20 @@ int main () {
                     do {
                         printf ("Introdueix nom del fitxer: ");
                         gets (player.nom_taulell);
-                        //printf ("%s - %s\n", player.nom_player, player.nom_taulell);
-                        f_taulell = fopen (player.nom_taulell, "r");
+                        //filename = strcat (filename,player.nom_taulell);
+                        printf ("txt: %s\n", player.nom_taulell);
+                        f_taulell = fopen (player.nom_taulell, "w");
                         if (!f_taulell) {
                             printf ("Error, no es troba el fitxer %s!\n", player.nom_taulell);
                         }
                     } while (!f_taulell);
+                    
+                    printf ("Informacio correcte.\n");
+                    printf ("Processant informacio...\n");
+                    printf ("Partida iniciada correctament.\n");
+                    startGame ();
                 }
-				//Inicialitzem Allegro
-				LS_allegro_init(1280,720,"PGM1 - PRS 2");
-	
-	
-				//Bucle infinit del joc
-				while(!nSortir){
-		
-					//Escoltem el teclat esperant la tecla ESC
-					if(LS_allegro_key_pressed(ALLEGRO_KEY_ESCAPE)){
-						nSortir = 1;
-					}
-					
-					//Donem l'ordre d'escriure el text de benvinguda
-					al_draw_textf(LS_allegro_get_font(NORMAL),LS_allegro_get_color(WHITE),140,100,0,"%s","Benvingut a Allegro! Prem ESC per sortir...");
-				
-					//Pintem la pantalla de la finestra gràfica
-					LS_allegro_clear_and_paint(BLACK);
-				}
-				
-				
-				//Tanquem la finestra gràfica
-				LS_allegro_exit();
+
 				break;
 			case '2': // Mostrar ranquing
 			
