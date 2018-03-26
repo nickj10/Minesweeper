@@ -6,8 +6,8 @@
 #define MAXBUFFER 50
 
 int myAtoi (char *num);
-void mostrarRanking ();
-Player sacarPlayer (char *cad);
 char *sacarInfo (char *cad, int *index, char delim);
+Player sacarPlayer (char *cad);
+void mostrarRanking ();
 
 #endif

@@ -20,6 +20,9 @@ void mostrarRanking () {
             printf ("%s - %s - %d\n", jugador.nom_player, jugador.nom_taulell, jugador.temps);
             fgets (buffer, MAXBUFFER, f_ranking);
         }
+        // Sacar la informacio de l'ultim jugador
+        jugador = sacarPlayer(buffer);
+        printf ("%s - %s - %d\n", jugador.nom_player, jugador.nom_taulell, jugador.temps);
     }
 }
 
@@ -36,13 +39,13 @@ Player sacarPlayer (char *cad) {
 }
 
 char *sacarInfo (char *cad, int *index, char delim) {
-    char *info;
+    char *info = (char*)malloc(sizeof(char) * MAXNOM);
     int i_info = 0;
     info = (char*)malloc(sizeof(char) * MAXNOM);
     while (cad[*index] != delim) {
         info[i_info++] = cad[(*index)++];
     }
-    printf ("INFO: %s\n", info);
+    ++(*index);
     return info;
 }
 
