@@ -10,10 +10,14 @@ int sacarNumero (char *aux) {
     int num = 0;
     int i_aux = 2, i_cad = 0;
     char *cad = (char*)malloc(sizeof(char) * 5);
+    printf ("AUX: %s\n", aux);
+    printf ("AUX NUM: %c\n", aux[i_aux]);
     while (aux[i_aux] != '\n') {
         cad[i_cad++] = aux[i_aux++];
     }
+    cad[i_cad] = '\0';
     num = myAtoi(cad);
+    printf ("num: %d\n", num);
     return num;
 }
 
@@ -35,12 +39,14 @@ void startGame (Taulell taulell) {
     
     width = 81 * taulell.col + 1;
     height = 252 + 81 * taulell.fila;
-    
+  
+    printf ("c:%d f:%d m:%d\n", taulell.col, taulell.fila, taulell.num_mines);
     printf ("w: %d h: %d\n", width, height);
     
     //Inicialitzem Allegro
     LS_allegro_init(width, height, "Buscamines");
-
+    //LS_allegro_init(1400,720, "hello");
+    
     //Bucle infinit del joc
     while(!nSortir){
         //Escoltem el teclat esperant la tecla ESC
@@ -49,7 +55,7 @@ void startGame (Taulell taulell) {
         }
         
         //Donem l'ordre d'escriure el text de benvinguda
-        al_draw_textf(LS_allegro_get_font(NORMAL),LS_allegro_get_color(WHITE),140,100,0,"%s","Benvingut a Allegro! Prem ESC per sortir...");
+        al_draw_textf(LS_allegro_get_font(NORMAL),LS_allegro_get_color(WHITE),200,300,0,"%s","Benvingut a Allegro! Prem ESC per sortir...");
 
         //Pintem la pantalla de la finestra gràfica
         LS_allegro_clear_and_paint(BLACK);
