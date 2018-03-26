@@ -1,1 +1,1 @@
-./Debug/LS_allegro.c.o ./Debug/main.c.o   
+./Debug/game.c.o ./Debug/LS_allegro.c.o ./Debug/main.c.o   

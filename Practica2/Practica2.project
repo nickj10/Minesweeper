@@ -20,6 +20,8 @@
   <Description/>
   <Dependencies/>
   <VirtualDirectory Name="src">
+    <File Name="game.h"/>
+    <File Name="game.c"/>
     <File Name="main.c"/>
     <File Name="LS_allegro.c"/>
     <File Name="LS_allegro.h"/>
