@@ -10,6 +10,12 @@ typedef struct {
     char *nom_taulell;
 } Player;
 
+typedef struct {
+    int col;
+    int fila;
+    int mines;
+} Taulell;
+
 void fflushnou ();
 void startGame ();
 
