@@ -49,21 +49,3 @@ char *sacarInfo (char *cad, int *index, char delim) {
     return info;
 }
 
-int myAtoi (char *num) {
-    int number = 0;
-    int negatiu = 0;
-    int i_num = 0;
-    
-    // Mirem si el numero es negatiu
-    if (num[i_num] == '-') {
-        negatiu = 1;
-        ++i_num;
-    }
-    while (num[i_num] != '\0') {
-        number = number * 10 + num[i_num++] - '0';
-    }
-    if (negatiu == 1) {
-        number *= -1;
-    }
-    return number;
-}
