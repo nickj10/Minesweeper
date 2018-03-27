@@ -1,4 +1,5 @@
 #include "game.h"
+#include "draw.h"
 
 void fflushnou () {
     char buffer[20];   
