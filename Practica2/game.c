@@ -23,22 +23,43 @@ int sacarNumero (char *aux) {
 
 Taulell sacarTaulell (FILE *f_taulell) {
     Taulell taulell;
+    int i, j;
+    int i_aux;
     char *aux = (char*)malloc(sizeof(char) * MAXAUX);
+    
     fgets (aux, MAXAUX, f_taulell);
     taulell.col = sacarNumero (aux);
     fgets (aux, MAXAUX, f_taulell);
     taulell.fila = sacarNumero (aux);
     fgets (aux, MAXAUX, f_taulell);
     taulell.num_mines = sacarNumero (aux);
+    
+    // Guardem memoria per al taulell
+    taulell.mines = (char**)malloc(sizeof(char*) * taulell.fila);
+    for (i = 0; i < taulell.fila; i++) {
+        taulell.mines[i] = (char*)malloc(sizeof(char) * taulell.col);
+    }
+    
+    // Llegir cada fila del fitxer per construir el taulell
+    for (i = 0; i < taulell.fila; i++) {
+        i_aux = 0;
+        fgets (aux, MAXAUX, f_taulell);
+        for (j = 0; j < taulell.col; j++) {
+            taulell.mines[i][j] = aux[i_aux++];
+        }
+        printf ("F%d: %s\n",i, taulell.mines[i]);
+    }
+    
     return taulell;
 }
 
 void startGame (Taulell *taulell, Player player) {
     int nSortir = 0;
+    int header_size = 100;
     int width, height;
     
     width = 81 * taulell->col + 1;
-    height = 252 + 81 * taulell->fila;
+    height = header_size + 81 * taulell->fila;
   
     printf ("c:%d f:%d m:%d\n", taulell->col, taulell->fila, taulell->num_mines);
     printf ("w: %d h: %d\n", width, height);

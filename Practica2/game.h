@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include "LS_allegro.h"
+
 #define MAXNOM 30
 #define MAXAUX 50
 
