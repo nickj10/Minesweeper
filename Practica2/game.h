@@ -7,6 +7,10 @@
 #define MAXNOM 30
 #define MAXAUX 50
 #define HEADER_SIZE 60
+#define UP 1
+#define DOWN 2
+#define LEFT 3
+#define RIGHT 4
 
 typedef struct {
     char *nom_player;
@@ -32,6 +36,7 @@ typedef struct {
 void fflushnou ();
 int myAtoi (char *num);
 void initCursor (Cursor *cur);
+void moveCursor (Cursor *cursor, int direction, int height, int width);
 Taulell sacarTaulell (FILE *f_taulell);
 void startGame (Taulell *taulell, Player player);
 
