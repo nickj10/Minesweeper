@@ -1,1 +1,1 @@
-./Debug/ranking.c.o ./Debug/LS_allegro.c.o ./Debug/game.c.o ./Debug/main.c.o   
+./Debug/LS_allegro.c.o ./Debug/game.c.o ./Debug/draw.c.o ./Debug/main.c.o ./Debug/ranking.c.o   

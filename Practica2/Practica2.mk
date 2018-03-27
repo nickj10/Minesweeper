@@ -62,7 +62,7 @@ AS       := C:/MinGW-4.8.1/bin/as.exe
 ## User defined environment variables
 ##
 CodeLiteDir:=C:\Program Files\CodeLite
-Objects0=$(IntermediateDirectory)/ranking.c$(ObjectSuffix) $(IntermediateDirectory)/LS_allegro.c$(ObjectSuffix) $(IntermediateDirectory)/game.c$(ObjectSuffix) $(IntermediateDirectory)/main.c$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/LS_allegro.c$(ObjectSuffix) $(IntermediateDirectory)/game.c$(ObjectSuffix) $(IntermediateDirectory)/draw.c$(ObjectSuffix) $(IntermediateDirectory)/main.c$(ObjectSuffix) $(IntermediateDirectory)/ranking.c$(ObjectSuffix) 
 
 
 
@@ -93,14 +93,6 @@ PreBuild:
 ##
 ## Objects
 ##
-$(IntermediateDirectory)/ranking.c$(ObjectSuffix): ranking.c $(IntermediateDirectory)/ranking.c$(DependSuffix)
-	$(CC) $(SourceSwitch) "C:/Users/PGM/Documents/practica2_buscamines/Practica2/ranking.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/ranking.c$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/ranking.c$(DependSuffix): ranking.c
-	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/ranking.c$(ObjectSuffix) -MF$(IntermediateDirectory)/ranking.c$(DependSuffix) -MM ranking.c
-
-$(IntermediateDirectory)/ranking.c$(PreprocessSuffix): ranking.c
-	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/ranking.c$(PreprocessSuffix) ranking.c
-
 $(IntermediateDirectory)/LS_allegro.c$(ObjectSuffix): LS_allegro.c $(IntermediateDirectory)/LS_allegro.c$(DependSuffix)
 	$(CC) $(SourceSwitch) "C:/Users/PGM/Documents/practica2_buscamines/Practica2/LS_allegro.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/LS_allegro.c$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/LS_allegro.c$(DependSuffix): LS_allegro.c
@@ -117,6 +109,14 @@ $(IntermediateDirectory)/game.c$(DependSuffix): game.c
 $(IntermediateDirectory)/game.c$(PreprocessSuffix): game.c
 	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/game.c$(PreprocessSuffix) game.c
 
+$(IntermediateDirectory)/draw.c$(ObjectSuffix): draw.c $(IntermediateDirectory)/draw.c$(DependSuffix)
+	$(CC) $(SourceSwitch) "C:/Users/PGM/Documents/practica2_buscamines/Practica2/draw.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/draw.c$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/draw.c$(DependSuffix): draw.c
+	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/draw.c$(ObjectSuffix) -MF$(IntermediateDirectory)/draw.c$(DependSuffix) -MM draw.c
+
+$(IntermediateDirectory)/draw.c$(PreprocessSuffix): draw.c
+	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/draw.c$(PreprocessSuffix) draw.c
+
 $(IntermediateDirectory)/main.c$(ObjectSuffix): main.c $(IntermediateDirectory)/main.c$(DependSuffix)
 	$(CC) $(SourceSwitch) "C:/Users/PGM/Documents/practica2_buscamines/Practica2/main.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.c$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/main.c$(DependSuffix): main.c
@@ -124,6 +124,14 @@ $(IntermediateDirectory)/main.c$(DependSuffix): main.c
 
 $(IntermediateDirectory)/main.c$(PreprocessSuffix): main.c
 	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/main.c$(PreprocessSuffix) main.c
+
+$(IntermediateDirectory)/ranking.c$(ObjectSuffix): ranking.c $(IntermediateDirectory)/ranking.c$(DependSuffix)
+	$(CC) $(SourceSwitch) "C:/Users/PGM/Documents/practica2_buscamines/Practica2/ranking.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/ranking.c$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/ranking.c$(DependSuffix): ranking.c
+	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/ranking.c$(ObjectSuffix) -MF$(IntermediateDirectory)/ranking.c$(DependSuffix) -MM ranking.c
+
+$(IntermediateDirectory)/ranking.c$(PreprocessSuffix): ranking.c
+	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/ranking.c$(PreprocessSuffix) ranking.c
 
 
 -include $(IntermediateDirectory)/*$(DependSuffix)

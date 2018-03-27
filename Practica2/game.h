@@ -22,6 +22,6 @@ typedef struct {
 void fflushnou ();
 int myAtoi (char *num);
 Taulell sacarTaulell (FILE *f_taulell);
-void startGame (Taulell taulell);
+void startGame (Taulell *taulell, Player player);
 
 #endif

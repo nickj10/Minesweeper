@@ -51,7 +51,9 @@ int main () {
                     taulell = sacarTaulell (f_taulell);
                     printf ("%d - %d - %d\n", taulell.col, taulell.fila, taulell.num_mines);
                     printf ("Partida iniciada correctament.\n");
-                    startGame (taulell);
+                    // De moment, posem 269 com a temps per el jugador
+                    player.temps = 269;
+                    startGame (&taulell, player);
                 }
 
 				break;

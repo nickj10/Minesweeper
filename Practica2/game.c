@@ -33,19 +33,19 @@ Taulell sacarTaulell (FILE *f_taulell) {
     return taulell;
 }
 
-void startGame (Taulell taulell) {
+void startGame (Taulell *taulell, Player player) {
     int nSortir = 0;
     int width, height;
     
-    width = 81 * taulell.col + 1;
-    height = 252 + 81 * taulell.fila;
+    width = 81 * taulell->col + 1;
+    height = 252 + 81 * taulell->fila;
   
-    printf ("c:%d f:%d m:%d\n", taulell.col, taulell.fila, taulell.num_mines);
+    printf ("c:%d f:%d m:%d\n", taulell->col, taulell->fila, taulell->num_mines);
     printf ("w: %d h: %d\n", width, height);
     
     //Inicialitzem Allegro
     LS_allegro_init(width, height, "Buscamines");
-    //LS_allegro_init(1400,720, "hello");
+    //LS_allegro_init(1280,720, "hello");
     
     //Bucle infinit del joc
     while(!nSortir){
@@ -55,8 +55,9 @@ void startGame (Taulell taulell) {
         }
         
         //Donem l'ordre d'escriure el text de benvinguda
-        al_draw_textf(LS_allegro_get_font(NORMAL),LS_allegro_get_color(WHITE),200,300,0,"%s","Benvingut a Allegro! Prem ESC per sortir...");
+        //al_draw_textf(LS_allegro_get_font(NORMAL),LS_allegro_get_color(WHITE),200,300,0,"%s","Benvingut a Allegro! Prem ESC per sortir...");
 
+        draw_header (player, width);
         //Pintem la pantalla de la finestra gràfica
         LS_allegro_clear_and_paint(BLACK);
         
