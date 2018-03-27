@@ -6,6 +6,7 @@
 
 #define MAXNOM 30
 #define MAXAUX 50
+#define HEADER_SIZE 60
 
 typedef struct {
     char *nom_player;

@@ -47,6 +47,7 @@ Taulell sacarTaulell (FILE *f_taulell) {
         for (j = 0; j < taulell.col; j++) {
             taulell.mines[i][j] = aux[i_aux++];
         }
+        aux[i_aux] = '\0';
         printf ("F%d: %s\n",i, taulell.mines[i]);
     }
     
@@ -55,11 +56,11 @@ Taulell sacarTaulell (FILE *f_taulell) {
 
 void startGame (Taulell *taulell, Player player) {
     int nSortir = 0;
-    int header_size = 100;
+    //int header_size = 100;
     int width, height;
     
     width = 81 * taulell->col + 1;
-    height = header_size + 81 * taulell->fila;
+    height = HEADER_SIZE + 81 * taulell->fila;
   
     printf ("c:%d f:%d m:%d\n", taulell->col, taulell->fila, taulell->num_mines);
     printf ("w: %d h: %d\n", width, height);
@@ -79,6 +80,7 @@ void startGame (Taulell *taulell, Player player) {
         //al_draw_textf(LS_allegro_get_font(NORMAL),LS_allegro_get_color(WHITE),200,300,0,"%s","Benvingut a Allegro! Prem ESC per sortir...");
 
         draw_header (player, width);
+        draw_squares (*taulell);
         //Pintem la pantalla de la finestra gràfica
         LS_allegro_clear_and_paint(BLACK);
         

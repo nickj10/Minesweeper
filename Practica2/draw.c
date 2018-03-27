@@ -8,5 +8,23 @@ void draw_header (Player player, int width) {
 }
 
 void draw_squares (Taulell taulell) {
+    int i_fil, j_col;
+    int x1 = 1;
+    int y1 = HEADER_SIZE + 1;
+    int x2 = x1 + SQUARE_SIZE;
+    int y2 = y1 + SQUARE_SIZE;
     
+    //al_draw_filled_rectangle (x1, y1, x2, y2,LS_allegro_get_color(GRAY));
+    //printf ("F %d C %d\n", taulell.fila, taulell.col);
+    for (i_fil = 0; i_fil < taulell.fila; i_fil++) {
+        for (j_col = 0; j_col < taulell.col; j_col++) {
+            al_draw_filled_rectangle (x1, y1, x2, y2,LS_allegro_get_color(GRAY));
+            x1 += (SQUARE_SIZE + 1);
+            x2 += (SQUARE_SIZE + 1);
+        }
+        x1 = 1;
+        x2 = x1 + SQUARE_SIZE;
+        y1 += (SQUARE_SIZE + 1);
+        y2 += (SQUARE_SIZE + 1);
+    }
 }
