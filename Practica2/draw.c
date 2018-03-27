@@ -1,6 +1,6 @@
 #include "draw.h"
 
-void draw_header (Player player, int width) {
+void drawHeader (Player player, int width) {
     al_draw_textf(LS_allegro_get_font(NORMAL),LS_allegro_get_color(WHITE),5,5,0,"%s","NOM:");
     al_draw_textf(LS_allegro_get_font(NORMAL),LS_allegro_get_color(WHITE),width/2,5,0,"%s","TEMPS:");
     if (strlen(player.nom_player) <= 10) {
@@ -19,7 +19,7 @@ void draw_header (Player player, int width) {
     }
 }
 
-void draw_squares (Taulell taulell) {
+void drawSquares (Taulell taulell) {
     int i_fil, j_col;
     int x1 = 1;
     int y1 = HEADER_SIZE + 1;
@@ -39,4 +39,8 @@ void draw_squares (Taulell taulell) {
         y1 += (SQUARE_SIZE + 1);
         y2 += (SQUARE_SIZE + 1);
     }
+}
+
+void drawCursor (Cursor cur) {
+    al_draw_rectangle (cur.x1, cur.y1, cur.x2, cur.y2,LS_allegro_get_color(LIGHT_GREEN),1);
 }

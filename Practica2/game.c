@@ -68,14 +68,26 @@ Taulell sacarTaulell (FILE *f_taulell) {
     return taulell;
 }
 
+void initCursor (Cursor *cur) {
+    cur->x1 = 1;
+    cur->y1 = HEADER_SIZE + 1;
+    cur->x2 = cur->x1 + SQUARE_SIZE;
+    cur->y2 = cur->y1 + SQUARE_SIZE;
+}
+
 void startGame (Taulell *taulell, Player player) {
     int nSortir = 0;
     //int header_size = 100;
     int width, height;
+    Cursor cursor;
     
+    // Calcular les dimensions de la pantalla
     width = 81 * taulell->col + 1;
     height = HEADER_SIZE + 81 * taulell->fila;
   
+    // Inicialitzem el cursor
+    initCursor (&cursor);
+    
     printf ("c:%d f:%d m:%d\n", taulell->col, taulell->fila, taulell->num_mines);
     printf ("w: %d h: %d\n", width, height);
     
@@ -93,8 +105,9 @@ void startGame (Taulell *taulell, Player player) {
         //Donem l'ordre d'escriure el text de benvinguda
         //al_draw_textf(LS_allegro_get_font(NORMAL),LS_allegro_get_color(WHITE),200,300,0,"%s","Benvingut a Allegro! Prem ESC per sortir...");
 
-        draw_header (player, width);
-        draw_squares (*taulell);
+        drawHeader (player, width);
+        drawSquares (*taulell);
+        drawCursor (cursor);
         //Pintem la pantalla de la finestra gràfica
         LS_allegro_clear_and_paint(BLACK);
         

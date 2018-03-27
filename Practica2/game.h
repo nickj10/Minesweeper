@@ -22,8 +22,16 @@ typedef struct {
     int **turned;
 } Taulell;
 
+typedef struct {
+    int x1;
+    int y1;
+    int x2;
+    int y2;
+} Cursor;
+
 void fflushnou ();
 int myAtoi (char *num);
+void initCursor (Cursor *cur);
 Taulell sacarTaulell (FILE *f_taulell);
 void startGame (Taulell *taulell, Player player);
 

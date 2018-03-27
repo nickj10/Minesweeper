@@ -6,8 +6,9 @@
 
 #define SQUARE_SIZE 80
 
-void draw_header (Player player, int width);
-void draw_squares (Taulell taulell);
+void drawHeader (Player player, int width);
+void drawSquares (Taulell taulell);
+void drawCursor (Cursor cur);
 
 
 #endif
