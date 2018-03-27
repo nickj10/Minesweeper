@@ -33,12 +33,16 @@ int main () {
                     printf ("Error en guardar memoria per el nom del jugador.\n");
                 }
                 else {
-                    printf ("Introdueix nom del jugador: ");
-                    gets (player.nom_player);
+                    do {
+                        printf ("Introdueix nom del jugador: ");
+                        gets (player.nom_player);
+                        if (strlen(player.nom_player) > MAXNOM) {
+                            printf ("Error, el nom del jugador ha de tenir com a maxim 30 caracters.\n");
+                        }
+                    } while (strlen(player.nom_player) > MAXNOM);
                     do {
                         printf ("Introdueix nom del fitxer: ");
                         gets (player.nom_taulell);
-                        //filename = strcat (filename,player.nom_taulell);
                         printf ("txt: %s\n", player.nom_taulell);
                         f_taulell = fopen (player.nom_taulell, "r");
                         if (!f_taulell) {
