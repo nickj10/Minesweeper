@@ -19,6 +19,7 @@ typedef struct {
     int fila;
     int num_mines;
     char **mines;
+    int **turned;
 } Taulell;
 
 void fflushnou ();

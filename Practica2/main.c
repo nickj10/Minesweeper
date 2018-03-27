@@ -60,16 +60,16 @@ int main () {
                     startGame (&taulell, player);
                 }
 
-				break;
-			case '2': // Mostrar ranquing
+                break;
+            case '2': // Mostrar ranquing
                 mostrarRanking ();
-				break;
-				
-			case '3': // Sortir
-				printf ("\nGracies per jugar!\n");
-				break;
-				
-			default: // En cas d'error en l'opcio
+                break;
+    
+            case '3': // Sortir
+                printf ("\nGracies per jugar!\n");
+                break;
+                
+            default: // En cas d'error en l'opcio
                 if (opcio < '0' || opcio > '9' ) {
                     printf ("Error, opcio incorrecta. La opcio ha de ser un nombre.\n");
                 }

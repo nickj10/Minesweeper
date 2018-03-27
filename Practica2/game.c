@@ -52,6 +52,19 @@ Taulell sacarTaulell (FILE *f_taulell) {
         printf ("F%d: %s\n",i, taulell.mines[i]);
     }
     
+    // Inicialitzar que totes les caselles no estan girades
+    // 0: no girada; 1: girada
+    taulell.turned = (int**)malloc(sizeof(int*) * taulell.fila);
+    for (i = 0; i < taulell.fila; i++) {
+        taulell.turned[i] = (int*)calloc(taulell.col, sizeof(int));
+    }
+    
+    printf ("GIR:\n");
+    for (i = 0; i < taulell.fila; i++) {
+        for (j = 0; j < taulell.col; j++)
+            printf ("%d", taulell.turned[i][j]);
+        printf ("\n");
+    }
     return taulell;
 }
 
