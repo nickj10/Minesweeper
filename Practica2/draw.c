@@ -56,3 +56,19 @@ void drawSquares (Taulell taulell) {
 void drawCursor (Cursor cur) {
     al_draw_rectangle (cur.x1, cur.y1, cur.x2, cur.y2,LS_allegro_get_color(LIGHT_GREEN),1);
 }
+
+void drawContent (Taulell taulell) {
+    int i, j;
+    int coord_x, coord_y;
+    for (i = 0; i < taulell.fila; i++) {
+        for (j = 0; j < taulell.col; j++) {
+            coord_x = (SQUARE_SIZE / 3) + j * (SQUARE_SIZE + 1);
+            coord_y = (SQUARE_SIZE / 3) + HEADER_SIZE + i * (SQUARE_SIZE + 1);
+            if (taulell.turned[i][j]) {
+                if (taulell.mines[i][j] != 'M') {
+                    al_draw_textf(LS_allegro_get_font(EXTRA_LARGE),LS_allegro_get_color(BLACK),coord_x,coord_y,0,"%c", taulell.mines[i][j]);
+                }
+            }
+        }
+    }
+};

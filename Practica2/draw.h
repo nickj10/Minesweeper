@@ -9,6 +9,6 @@
 void drawHeader (Player player, int width);
 void drawSquares (Taulell taulell);
 void drawCursor (Cursor cur);
-
+void drawContent (Taulell taulell);
 
 #endif

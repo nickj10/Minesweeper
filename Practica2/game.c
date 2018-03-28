@@ -182,6 +182,7 @@ int startGame (Taulell *taulell, Player *player) {
         drawHeader (*player, width);
         drawSquares (*taulell);
         drawCursor (cursor);
+        drawContent (*taulell);
         
         // Mou el cursor segons el key
         if (LS_allegro_key_pressed(ALLEGRO_KEY_UP)) {
