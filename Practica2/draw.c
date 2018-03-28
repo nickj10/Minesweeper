@@ -35,16 +35,11 @@ void drawSquares (Taulell taulell) {
             }
             else {
                 if (taulell.turned[i_fil][j_col] == 1) {
-                    switch (taulell.mines[i_fil][j_col]) {
-                        case '0':
-                            al_draw_filled_rectangle (x1, y1, x2, y2,LS_allegro_get_color(WHITE));
-                            break;
-                        case '1':
-                            al_draw_filled_rectangle (x1, y1, x2, y2,LS_allegro_get_color(WHITE));
-                            break;
-                        case 'M':
-                            al_draw_filled_rectangle (x1, y1, x2, y2,LS_allegro_get_color(RED));
-                            break;
+                    if (taulell.mines[i_fil][j_col] == 'M') {
+                        al_draw_filled_rectangle (x1, y1, x2, y2,LS_allegro_get_color(RED));
+                    }
+                    else {
+                        al_draw_filled_rectangle (x1, y1, x2, y2,LS_allegro_get_color(WHITE));
                     }
                 }
             }

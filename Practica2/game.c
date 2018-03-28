@@ -73,6 +73,8 @@ void initCursor (Cursor *cur) {
     cur->y1 = HEADER_SIZE + 1;
     cur->x2 = cur->x1 + SQUARE_SIZE + 1;
     cur->y2 = cur->y1 + SQUARE_SIZE + 1;
+    cur->row = 0;
+    cur->column = 0;
 }
 
 void moveCursor (Cursor *cursor, int direction, int height, int width) {
@@ -84,6 +86,7 @@ void moveCursor (Cursor *cursor, int direction, int height, int width) {
             if (aux.y1 > HEADER_SIZE) {
                 cursor->y1 = aux.y1;
                 cursor->y2 = aux.y2;
+                cursor->row -= 1;
             }
             break;
         case DOWN: // DOWN
@@ -92,6 +95,7 @@ void moveCursor (Cursor *cursor, int direction, int height, int width) {
             if (aux.y2 <= height) {
                 cursor->y1 = aux.y1;
                 cursor->y2 = aux.y2;
+                cursor->row += 1;
             }
             break;
         case LEFT: // LEFT
@@ -100,6 +104,7 @@ void moveCursor (Cursor *cursor, int direction, int height, int width) {
             if (aux.x1 > 0) {
                 cursor->x1 = aux.x1;
                 cursor->x2 = aux.x2;
+                cursor->column -= 1;
             }
             break;
         case RIGHT: // RIGHT
@@ -108,6 +113,7 @@ void moveCursor (Cursor *cursor, int direction, int height, int width) {
             if (aux.x1 < width) {
                 cursor->x1 = aux.x1;
                 cursor->x2 = aux.x2;
+                cursor->column += 1;
             }
             break;
     }
@@ -120,6 +126,14 @@ void turnAllSquares (Taulell *taulell) {
         for (j = 0; j < taulell->col; j++) {
             taulell->turned[i][j] = 1;
         }
+    }
+}
+
+void turnSquare (Cursor cursor, Taulell *taulell) {
+    // Indiquem que la casella esta girada
+    taulell->turned[cursor.row][cursor.column] = 1;
+    if (taulell->mines[cursor.row][cursor.column] == 'M') {
+        turnAllSquares (taulell);
     }
 }
 
@@ -170,7 +184,9 @@ void startGame (Taulell *taulell, Player player) {
         if (LS_allegro_key_pressed(ALLEGRO_KEY_RIGHT)) {
             moveCursor(&cursor, RIGHT, height, width);
         }
-        
+        if (LS_allegro_key_pressed(ALLEGRO_KEY_SPACE)) {
+            turnSquare(cursor, taulell);
+        }
         //Pintem la pantalla de la finestra gràfica
         LS_allegro_clear_and_paint(BLACK);
         

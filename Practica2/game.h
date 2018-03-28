@@ -31,13 +31,16 @@ typedef struct {
     int y1;
     int x2;
     int y2;
+    int row;
+    int column;
 } Cursor;
 
 void fflushnou ();
 int myAtoi (char *num);
+Taulell sacarTaulell (FILE *f_taulell);
 void initCursor (Cursor *cur);
 void moveCursor (Cursor *cursor, int direction, int height, int width);
-Taulell sacarTaulell (FILE *f_taulell);
+void turnSquare (Cursor cursor, Taulell *taulell);
 void turnAllSquares (Taulell *taulell);
 void startGame (Taulell *taulell, Player player);
 
