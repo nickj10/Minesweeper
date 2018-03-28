@@ -11,6 +11,7 @@ int main () {
     Player player;
     Taulell taulell;
     char opcio;
+    int gameover;
     
 	while (opcio != '3') {
 		
@@ -57,9 +58,15 @@ int main () {
                     printf ("Partida iniciada correctament.\n");
                     // De moment, posem 269 com a temps per el jugador
                     player.temps = 0;
-                    startGame (&taulell, &player);
-                    printf ("\nEl jugador: %s\n", player.nom_player);
-                    printf ("Puntuacio: %d\n", player.temps);
+                    gameover = startGame (&taulell, &player);
+                    if (gameover) {
+                        printf ("\nEl jugador: %s\n", player.nom_player);
+                        printf ("Puntuacio: %d\n\n", player.temps);
+                        printf ("Partida finalitzada correctament!\n");
+                    }
+                    else {
+                        printf ("\nPartida finalitzada per jugador!\n");
+                    }
                 }
 
                 break;

@@ -140,7 +140,7 @@ int turnSquare (Cursor cursor, Taulell *taulell) {
     return gameover;
 }
 
-void startGame (Taulell *taulell, Player *player) {
+int startGame (Taulell *taulell, Player *player) {
     int nSortir = 0;
     //int header_size = 100;
     int width, height;
@@ -204,12 +204,11 @@ void startGame (Taulell *taulell, Player *player) {
         }
         //Pintem la pantalla de la finestra gràfica
         LS_allegro_clear_and_paint(BLACK);
-        
-        
     }
 
     //Tanquem la finestra gràfica
     LS_allegro_exit();
+    return gameover;
 }
 
 int myAtoi (char *num) {

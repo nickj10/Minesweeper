@@ -43,6 +43,6 @@ void initCursor (Cursor *cur);
 void moveCursor (Cursor *cursor, int direction, int height, int width);
 int turnSquare (Cursor cursor, Taulell *taulell);
 void turnAllSquares (Taulell *taulell);
-void startGame (Taulell *taulell, Player *player);
+int startGame (Taulell *taulell, Player *player);
 
 #endif
