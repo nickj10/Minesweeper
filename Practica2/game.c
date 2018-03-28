@@ -71,8 +71,8 @@ Taulell sacarTaulell (FILE *f_taulell) {
 void initCursor (Cursor *cur) {
     cur->x1 = 1;
     cur->y1 = HEADER_SIZE + 1;
-    cur->x2 = cur->x1 + SQUARE_SIZE;
-    cur->y2 = cur->y1 + SQUARE_SIZE;
+    cur->x2 = cur->x1 + SQUARE_SIZE + 1;
+    cur->y2 = cur->y1 + SQUARE_SIZE + 1;
 }
 
 void moveCursor (Cursor *cursor, int direction, int height, int width) {
@@ -122,7 +122,7 @@ void startGame (Taulell *taulell, Player player) {
     
     // Calcular les dimensions de la pantalla
     width = 81 * taulell->col + 1;
-    height = HEADER_SIZE + 81 * taulell->fila;
+    height = 1 + HEADER_SIZE + 81 * taulell->fila;
   
     // Inicialitzem el cursor
     initCursor (&cursor);
