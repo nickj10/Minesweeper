@@ -114,6 +114,15 @@ void moveCursor (Cursor *cursor, int direction, int height, int width) {
     
 }
 
+void turnAllSquares (Taulell *taulell) {
+    int i, j;
+    for (i = 0; i < taulell->fila; i++) {
+        for (j = 0; j < taulell->col; j++) {
+            taulell->turned[i][j] = 1;
+        }
+    }
+}
+
 void startGame (Taulell *taulell, Player player) {
     int nSortir = 0;
     //int header_size = 100;

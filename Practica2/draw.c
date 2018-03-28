@@ -30,7 +30,24 @@ void drawSquares (Taulell taulell) {
     //printf ("F %d C %d\n", taulell.fila, taulell.col);
     for (i_fil = 0; i_fil < taulell.fila; i_fil++) {
         for (j_col = 0; j_col < taulell.col; j_col++) {
-            al_draw_filled_rectangle (x1, y1, x2, y2,LS_allegro_get_color(GRAY));
+            if (taulell.turned[i_fil][j_col] == 0) {
+                al_draw_filled_rectangle (x1, y1, x2, y2,LS_allegro_get_color(GRAY));
+            }
+            else {
+                if (taulell.turned[i_fil][j_col] == 1) {
+                    switch (taulell.mines[i_fil][j_col]) {
+                        case '0':
+                            al_draw_filled_rectangle (x1, y1, x2, y2,LS_allegro_get_color(WHITE));
+                            break;
+                        case '1':
+                            al_draw_filled_rectangle (x1, y1, x2, y2,LS_allegro_get_color(WHITE));
+                            break;
+                        case 'M':
+                            al_draw_filled_rectangle (x1, y1, x2, y2,LS_allegro_get_color(RED));
+                            break;
+                    }
+                }
+            }
             x1 += (SQUARE_SIZE + 1);
             x2 += (SQUARE_SIZE + 1);
         }

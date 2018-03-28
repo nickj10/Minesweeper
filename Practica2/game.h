@@ -38,6 +38,7 @@ int myAtoi (char *num);
 void initCursor (Cursor *cur);
 void moveCursor (Cursor *cursor, int direction, int height, int width);
 Taulell sacarTaulell (FILE *f_taulell);
+void turnAllSquares (Taulell *taulell);
 void startGame (Taulell *taulell, Player player);
 
 #endif
