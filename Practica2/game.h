@@ -2,6 +2,7 @@
 #define _GAME_H
 
 #include <stdio.h>
+#include <time.h>
 #include "LS_allegro.h"
 
 #define MAXNOM 30
@@ -40,8 +41,8 @@ int myAtoi (char *num);
 Taulell sacarTaulell (FILE *f_taulell);
 void initCursor (Cursor *cur);
 void moveCursor (Cursor *cursor, int direction, int height, int width);
-void turnSquare (Cursor cursor, Taulell *taulell);
+int turnSquare (Cursor cursor, Taulell *taulell);
 void turnAllSquares (Taulell *taulell);
-void startGame (Taulell *taulell, Player player);
+void startGame (Taulell *taulell, Player *player);
 
 #endif
