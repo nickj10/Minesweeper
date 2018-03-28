@@ -78,33 +78,33 @@ void initCursor (Cursor *cur) {
 void moveCursor (Cursor *cursor, int direction, int height, int width) {
     Cursor aux;
     switch (direction) {
-        case 1: // UP
-            aux.y1 -= SQUARE_SIZE;
-            aux.y2 -= SQUARE_SIZE;
+        case UP: // UP
+            aux.y1 = cursor->y1 - (SQUARE_SIZE + 1);
+            aux.y2 = cursor->y2 - (SQUARE_SIZE + 1);
             if (aux.y1 > HEADER_SIZE) {
                 cursor->y1 = aux.y1;
                 cursor->y2 = aux.y2;
             }
             break;
-        case 2: // DOWN
-            aux.y1 += SQUARE_SIZE;
-            aux.y2 += SQUARE_SIZE;
-            if (aux.y2 < height) {
+        case DOWN: // DOWN
+            aux.y1 = cursor->y1 + (SQUARE_SIZE + 1);
+            aux.y2 = cursor->y2 + (SQUARE_SIZE + 1);
+            if (aux.y2 <= height) {
                 cursor->y1 = aux.y1;
                 cursor->y2 = aux.y2;
             }
             break;
-        case 3: // LEFT
-            aux.x1 -= SQUARE_SIZE;
-            aux.x2 -= SQUARE_SIZE;
+        case LEFT: // LEFT
+            aux.x1 = cursor->x1 - (SQUARE_SIZE + 1);
+            aux.x2 = cursor->x2 - (SQUARE_SIZE + 1);
             if (aux.x1 > 0) {
                 cursor->x1 = aux.x1;
                 cursor->x2 = aux.x2;
             }
             break;
-        case 4: // RIGHT
-            aux.x1 += SQUARE_SIZE;
-            aux.x2 += SQUARE_SIZE;
+        case RIGHT: // RIGHT
+            aux.x1 = cursor->x1 + (SQUARE_SIZE + 1);
+            aux.x2 = cursor->x2 + (SQUARE_SIZE + 1);
             if (aux.x1 < width) {
                 cursor->x1 = aux.x1;
                 cursor->x2 = aux.x2;
@@ -147,6 +147,8 @@ void startGame (Taulell *taulell, Player player) {
         drawHeader (player, width);
         drawSquares (*taulell);
         drawCursor (cursor);
+        
+        // Mou el cursor segons el key
         if (LS_allegro_key_pressed(ALLEGRO_KEY_UP)) {
             moveCursor(&cursor, UP, height, width);
         }
@@ -159,6 +161,7 @@ void startGame (Taulell *taulell, Player player) {
         if (LS_allegro_key_pressed(ALLEGRO_KEY_RIGHT)) {
             moveCursor(&cursor, RIGHT, height, width);
         }
+        
         //Pintem la pantalla de la finestra gràfica
         LS_allegro_clear_and_paint(BLACK);
         

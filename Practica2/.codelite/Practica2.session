@@ -5,22 +5,22 @@
   <TabInfoArray Name="TabInfoArray">
     <TabInfo>
       <wxString Value="C:\Users\PGM\Documents\practica2_buscamines\Practica2\main.c" Name="FileName"/>
-      <int Value="36" Name="FirstVisibleLine"/>
-      <int Value="53" Name="CurrentLine"/>
+      <int Value="0" Name="FirstVisibleLine"/>
+      <int Value="71" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>
     <TabInfo>
       <wxString Value="C:\Users\PGM\Documents\practica2_buscamines\Practica2\game.c" Name="FileName"/>
-      <int Value="42" Name="FirstVisibleLine"/>
-      <int Value="57" Name="CurrentLine"/>
+      <int Value="140" Name="FirstVisibleLine"/>
+      <int Value="159" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>
     <TabInfo>
       <wxString Value="C:\Users\PGM\Documents\practica2_buscamines\Practica2\game.h" Name="FileName"/>
-      <int Value="16" Name="FirstVisibleLine"/>
-      <int Value="24" Name="CurrentLine"/>
+      <int Value="24" Name="FirstVisibleLine"/>
+      <int Value="38" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>
@@ -33,8 +33,8 @@
     </TabInfo>
     <TabInfo>
       <wxString Value="C:\Users\PGM\Documents\practica2_buscamines\Practica2\ranking.c" Name="FileName"/>
-      <int Value="46" Name="FirstVisibleLine"/>
-      <int Value="51" Name="CurrentLine"/>
+      <int Value="0" Name="FirstVisibleLine"/>
+      <int Value="0" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>
@@ -47,8 +47,22 @@
     </TabInfo>
     <TabInfo>
       <wxString Value="C:\Users\PGM\Documents\practica2_buscamines\Practica2\LS_allegro.h" Name="FileName"/>
-      <int Value="57" Name="FirstVisibleLine"/>
+      <int Value="24" Name="FirstVisibleLine"/>
       <int Value="14" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="C:\Users\PGM\Documents\practica2_buscamines\Practica2\draw.c" Name="FileName"/>
+      <int Value="25" Name="FirstVisibleLine"/>
+      <int Value="44" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="C:\Users\PGM\Documents\practica2_buscamines\Practica2\draw.h" Name="FileName"/>
+      <int Value="0" Name="FirstVisibleLine"/>
+      <int Value="10" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>
