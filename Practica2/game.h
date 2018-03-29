@@ -19,12 +19,22 @@ typedef struct {
     char *nom_taulell;
 } Player;
 
-typedef struct {
+/*typedef struct {
+    int activada;
     int row;
     int column;
     int coord1;
     int coord2;
     int coord3;
+} Flag; */
+
+typedef struct {
+    int activada;
+    int row;
+    int column;
+    Coordenada coord1;
+    Coordenada coord2;
+    Coordenada coord3;
 } Flag;
 
 typedef struct {
@@ -33,16 +43,18 @@ typedef struct {
     int num_mines;
     char **mines;
     int **turned;
-    int **flags;
+    //int **flags;
     int total_squares;
-    //Flag *flags;
+    Flag **flags;
 } Taulell;
 
 typedef struct {
-    int x1;
-    int y1;
-    int x2;
-    int y2;
+    //int x1;
+    //int y1;
+    //int x2;
+    //int y2;
+    Coordenada coord1;
+    Coordenada coord2;
     int row;
     int column;
 } Cursor;
@@ -55,7 +67,7 @@ void initCursor (Cursor *cur);
 void moveCursor (Cursor *cursor, int direction, int height, int width);
 int turnSquare (Cursor cursor, Taulell *taulell);
 void turnAllSquares (Taulell *taulell);
-void putFlag (Cursor cursor, Taulell *taulell);
+void putFlag (Cursor cursor, Taulell *taulell, int *total);
 int startGame (Taulell *taulell, Player *player);
 
 #endif

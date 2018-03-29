@@ -71,9 +71,12 @@ Taulell sacarTaulell (FILE *f_taulell) {
     
     // Inicialitzar les banderes
     //taulell.flags = (Flag*)malloc(sizeof(Flag) * total_squares);
-    taulell.flags = (int**)malloc(sizeof(int*) * taulell.fila);
+    taulell.flags = (Flag**)malloc(sizeof(Flag*) * taulell.fila);
     for (i = 0; i < taulell.fila; i++) {
-        taulell.flags[i] = (int*)calloc(taulell.col, sizeof(int));
+        taulell.flags[i] = (Flag*)malloc(taulell.col * sizeof(Flag));
+        for (j = 0; j < taulell.col; j++) {
+            taulell.flags[i][j].activada = 0;
+        }
     }
     
     return taulell;
@@ -151,12 +154,14 @@ int turnSquare (Cursor cursor, Taulell *taulell) {
     return gameover;
 }
 
-void putFlag (Cursor cursor, Taulell *taulell) {
-    if (taulell->flags[cursor.row][cursor.column] == 0) {
-        taulell->flags[cursor.row][cursor.column] = 1;
+void putFlag (Cursor cursor, Taulell *taulell, int *total) {
+    if (taulell->flags[cursor.row][cursor.column].activada == 0) {
+        taulell->flags[cursor.row][cursor.column].activada = 1;
+        (*total)++;
     }
     else {
-        taulell->flags[cursor.row][cursor.column] = 1;
+        taulell->flags[cursor.row][cursor.column].activada = 1;
+        (*total)--;
     }
 }
 
@@ -165,8 +170,9 @@ int startGame (Taulell *taulell, Player *player) {
     //int header_size = 100;
     int width, height;
     Cursor cursor;
-    Flag *flags;
+    //Flag *flags;
     int gameover = 0;
+    int total_flags = 0;
     
     // Calcular les dimensions de la pantalla
     width = 81 * taulell->col + 1;
@@ -174,7 +180,7 @@ int startGame (Taulell *taulell, Player *player) {
   
     // Inicialitzem el cursor i els flags
     initCursor (&cursor);
-    flags = (Flag*)malloc(sizeof(Flag) * taulell->total_squares); //L'usuari pot posar tantes banderes com caselles en el taulell pero no vol dir que guanya
+    //flags = (Flag*)malloc(sizeof(Flag) * taulell->total_squares); //L'usuari pot posar tantes banderes com caselles en el taulell pero no vol dir que guanya
     
     printf ("c:%d f:%d m:%d\n", taulell->col, taulell->fila, taulell->num_mines);
     printf ("w: %d h: %d\n", width, height);
@@ -221,6 +227,11 @@ int startGame (Taulell *taulell, Player *player) {
         }
         if (LS_allegro_key_pressed(ALLEGRO_KEY_SPACE)) {
             gameover = turnSquare(cursor, taulell);
+        }
+        
+        // Posem la bandera en la casella corresponent
+        if (LS_allegro_key_pressed(ALLEGRO_KEY_F)) {
+            putFlag(cursor, taulell, &total_flags);
         }
         if (gameover) {
             al_draw_textf(LS_allegro_get_font(EXTRA_LARGE),LS_allegro_get_color(BLACK),width/3,height/2,0,"%s","GAMEOVER");

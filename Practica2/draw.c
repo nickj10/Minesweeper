@@ -74,5 +74,12 @@ void drawContent (Taulell taulell) {
 }
 
 void drawFlags (Taulell taulell) {
-    
+    int i, j;
+    for (i = 0; i < taulell.fila; i++) {
+        for (j = 0; j < taulell.col; j++) {
+            if ((taulell.turned[i][j] == 0) && (taulell.flags[i][j].activada == 1)) {
+                // Dibuixar la bandera
+            }
+        }
+    }
 }

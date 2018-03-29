@@ -6,6 +6,11 @@
 
 #define SQUARE_SIZE 80
 
+typedef struct {
+    int x;
+    int y;
+} Coordenada;
+
 void drawHeader (Player player, int width);
 void drawSquares (Taulell taulell);
 void drawCursor (Cursor cur);
