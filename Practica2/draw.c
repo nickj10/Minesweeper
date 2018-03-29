@@ -71,4 +71,8 @@ void drawContent (Taulell taulell) {
             }
         }
     }
-};
+}
+
+void drawFlags (Taulell taulell) {
+    
+}

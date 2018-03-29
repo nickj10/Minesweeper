@@ -27,13 +27,16 @@ Taulell sacarTaulell (FILE *f_taulell) {
     int i, j;
     int i_aux;
     char *aux = (char*)malloc(sizeof(char) * MAXAUX);
-    
+
     fgets (aux, MAXAUX, f_taulell);
     taulell.col = sacarNumero (aux);
     fgets (aux, MAXAUX, f_taulell);
     taulell.fila = sacarNumero (aux);
     fgets (aux, MAXAUX, f_taulell);
     taulell.num_mines = sacarNumero (aux);
+    
+    // Calculem quantes n'hi ha en total
+    taulell.total_squares = taulell.col * taulell.fila;
     
     // Guardem memoria per al taulell
     taulell.mines = (char**)malloc(sizeof(char*) * taulell.fila);
@@ -65,6 +68,14 @@ Taulell sacarTaulell (FILE *f_taulell) {
             printf ("%d", taulell.turned[i][j]);
         printf ("\n");
     }
+    
+    // Inicialitzar les banderes
+    //taulell.flags = (Flag*)malloc(sizeof(Flag) * total_squares);
+    taulell.flags = (int**)malloc(sizeof(int*) * taulell.fila);
+    for (i = 0; i < taulell.fila; i++) {
+        taulell.flags[i] = (int*)calloc(taulell.col, sizeof(int));
+    }
+    
     return taulell;
 }
 
@@ -140,19 +151,30 @@ int turnSquare (Cursor cursor, Taulell *taulell) {
     return gameover;
 }
 
+void putFlag (Cursor cursor, Taulell *taulell) {
+    if (taulell->flags[cursor.row][cursor.column] == 0) {
+        taulell->flags[cursor.row][cursor.column] = 1;
+    }
+    else {
+        taulell->flags[cursor.row][cursor.column] = 1;
+    }
+}
+
 int startGame (Taulell *taulell, Player *player) {
     int nSortir = 0;
     //int header_size = 100;
     int width, height;
     Cursor cursor;
+    Flag *flags;
     int gameover = 0;
     
     // Calcular les dimensions de la pantalla
     width = 81 * taulell->col + 1;
     height = 1 + HEADER_SIZE + 81 * taulell->fila;
   
-    // Inicialitzem el cursor
+    // Inicialitzem el cursor i els flags
     initCursor (&cursor);
+    flags = (Flag*)malloc(sizeof(Flag) * taulell->total_squares); //L'usuari pot posar tantes banderes com caselles en el taulell pero no vol dir que guanya
     
     printf ("c:%d f:%d m:%d\n", taulell->col, taulell->fila, taulell->num_mines);
     printf ("w: %d h: %d\n", width, height);
