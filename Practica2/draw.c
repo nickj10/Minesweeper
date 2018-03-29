@@ -59,14 +59,14 @@ void drawCursor (Cursor cur) {
 
 void drawContent (Taulell taulell) {
     int i, j;
-    int coord_x, coord_y;
+    Coordenada coord;
     for (i = 0; i < taulell.fila; i++) {
         for (j = 0; j < taulell.col; j++) {
-            coord_x = (SQUARE_SIZE / 3) + j * (SQUARE_SIZE + 1);
-            coord_y = (SQUARE_SIZE / 3) + HEADER_SIZE + i * (SQUARE_SIZE + 1);
+            coord.x = (SQUARE_SIZE / 3) + j * (SQUARE_SIZE + 1);
+            coord.y = (SQUARE_SIZE / 3) + HEADER_SIZE + i * (SQUARE_SIZE + 1);
             if (taulell.turned[i][j]) {
                 if (taulell.mines[i][j] != 'M' && taulell.mines[i][j] != '0') {
-                    al_draw_textf(LS_allegro_get_font(EXTRA_LARGE),LS_allegro_get_color(BLACK),coord_x,coord_y,0,"%c", taulell.mines[i][j]);
+                    al_draw_textf(LS_allegro_get_font(EXTRA_LARGE),LS_allegro_get_color(BLACK),coord.x,coord.y,0,"%c", taulell.mines[i][j]);
                 }
             }
         }
