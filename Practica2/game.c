@@ -155,14 +155,16 @@ int turnSquare (Cursor cursor, Taulell *taulell) {
 }
 
 void putFlag (Cursor cursor, Taulell *taulell, int *total) {
+    printf ("flag acticada? %d\n", taulell->flags[cursor.row][cursor.column].activada);
     if (taulell->flags[cursor.row][cursor.column].activada == 0) {
         taulell->flags[cursor.row][cursor.column].activada = 1;
         (*total)++;
     }
     else {
-        taulell->flags[cursor.row][cursor.column].activada = 1;
+        taulell->flags[cursor.row][cursor.column].activada = 0;
         (*total)--;
     }
+    printf ("total flags: %d\n", *total);
 }
 
 int startGame (Taulell *taulell, Player *player) {
@@ -211,6 +213,7 @@ int startGame (Taulell *taulell, Player *player) {
         drawSquares (*taulell);
         drawCursor (cursor);
         drawContent (*taulell);
+        drawFlags(*taulell);
         
         // Mou el cursor segons el key
         if (LS_allegro_key_pressed(ALLEGRO_KEY_UP)) {

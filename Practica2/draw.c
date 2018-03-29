@@ -75,10 +75,23 @@ void drawContent (Taulell taulell) {
 
 void drawFlags (Taulell taulell) {
     int i, j;
+    Flag aux;
     for (i = 0; i < taulell.fila; i++) {
         for (j = 0; j < taulell.col; j++) {
-            if ((taulell.turned[i][j] == 0) && (taulell.flags[i][j].activada == 1)) {
-                // Dibuixar la bandera
+            aux.coord1.x = (SQUARE_SIZE / 4) + j * (SQUARE_SIZE + 1);
+            aux.coord1.y = (SQUARE_SIZE / 4) + HEADER_SIZE + i * (SQUARE_SIZE + 1);
+            aux.coord2.x = aux.coord1.x;
+            aux.coord2.y = aux.coord1.y + (SQUARE_SIZE / 2);
+            aux.coord3.x = (SQUARE_SIZE - (SQUARE_SIZE / 4)) + j * (SQUARE_SIZE + 1);
+            aux.coord3.y = (SQUARE_SIZE / 2) + HEADER_SIZE + i * (SQUARE_SIZE + 1);
+            if (taulell.turned[i][j] == 0) {
+                if (taulell.flags[i][j].activada == 1) {
+                    // Dibuixar la bandera
+                    al_draw_filled_triangle (aux.coord1.x, aux.coord1.y, aux.coord2.x, aux.coord2.y, aux.coord3.x, aux.coord3.y,LS_allegro_get_color(DARK_GREEN));
+                }
+                else {
+                    al_draw_filled_triangle (aux.coord1.x, aux.coord1.y, aux.coord2.x, aux.coord2.y, aux.coord3.x, aux.coord3.y,LS_allegro_get_color(GRAY));
+                }
             }
         }
     }
