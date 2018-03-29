@@ -83,10 +83,10 @@ Taulell sacarTaulell (FILE *f_taulell) {
 }
 
 void initCursor (Cursor *cur) {
-    cur->x1 = 1;
-    cur->y1 = HEADER_SIZE + 1;
-    cur->x2 = cur->x1 + SQUARE_SIZE + 1;
-    cur->y2 = cur->y1 + SQUARE_SIZE + 1;
+    cur->coord1.x = 1;
+    cur->coord1.y = HEADER_SIZE + 1;
+    cur->coord2.x = cur->coord1.x + SQUARE_SIZE + 1;
+    cur->coord2.y = cur->coord1.y + SQUARE_SIZE + 1;
     cur->row = 0;
     cur->column = 0;
 }
@@ -95,38 +95,38 @@ void moveCursor (Cursor *cursor, int direction, int height, int width) {
     Cursor aux;
     switch (direction) {
         case UP: // UP
-            aux.y1 = cursor->y1 - (SQUARE_SIZE + 1);
-            aux.y2 = cursor->y2 - (SQUARE_SIZE + 1);
-            if (aux.y1 > HEADER_SIZE) {
-                cursor->y1 = aux.y1;
-                cursor->y2 = aux.y2;
+            aux.coord1.y = cursor->coord1.y - (SQUARE_SIZE + 1);
+            aux.coord2.y = cursor->coord2.y - (SQUARE_SIZE + 1);
+            if (aux.coord1.y > HEADER_SIZE) {
+                cursor->coord1.y = aux.coord1.y;
+                cursor->coord2.y = aux.coord2.y;
                 cursor->row -= 1;
             }
             break;
         case DOWN: // DOWN
-            aux.y1 = cursor->y1 + (SQUARE_SIZE + 1);
-            aux.y2 = cursor->y2 + (SQUARE_SIZE + 1);
-            if (aux.y2 <= height) {
-                cursor->y1 = aux.y1;
-                cursor->y2 = aux.y2;
+            aux.coord1.y = cursor->coord1.y + (SQUARE_SIZE + 1);
+            aux.coord2.y = cursor->coord2.y + (SQUARE_SIZE + 1);
+            if (aux.coord2.y <= height) {
+                cursor->coord1.y = aux.coord1.y;
+                cursor->coord2.y = aux.coord2.y;
                 cursor->row += 1;
             }
             break;
         case LEFT: // LEFT
-            aux.x1 = cursor->x1 - (SQUARE_SIZE + 1);
-            aux.x2 = cursor->x2 - (SQUARE_SIZE + 1);
-            if (aux.x1 > 0) {
-                cursor->x1 = aux.x1;
-                cursor->x2 = aux.x2;
+            aux.coord1.x = cursor->coord1.x - (SQUARE_SIZE + 1);
+            aux.coord2.x = cursor->coord2.x - (SQUARE_SIZE + 1);
+            if (aux.coord1.x > 0) {
+                cursor->coord1.x = aux.coord1.x;
+                cursor->coord2.x = aux.coord2.x;
                 cursor->column -= 1;
             }
             break;
         case RIGHT: // RIGHT
-            aux.x1 = cursor->x1 + (SQUARE_SIZE + 1);
-            aux.x2 = cursor->x2 + (SQUARE_SIZE + 1);
-            if (aux.x1 < width) {
-                cursor->x1 = aux.x1;
-                cursor->x2 = aux.x2;
+            aux.coord1.x = cursor->coord1.x + (SQUARE_SIZE + 1);
+            aux.coord2.x = cursor->coord2.x + (SQUARE_SIZE + 1);
+            if (aux.coord1.x < width) {
+                cursor->coord1.x = aux.coord1.x;
+                cursor->coord2.x = aux.coord2.x;
                 cursor->column += 1;
             }
             break;

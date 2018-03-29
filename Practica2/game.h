@@ -19,6 +19,11 @@ typedef struct {
     char *nom_taulell;
 } Player;
 
+typedef struct {
+    int x;
+    int y;
+} Coordenada;
+
 /*typedef struct {
     int activada;
     int row;

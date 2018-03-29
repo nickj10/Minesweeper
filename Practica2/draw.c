@@ -54,7 +54,7 @@ void drawSquares (Taulell taulell) {
 }
 
 void drawCursor (Cursor cur) {
-    al_draw_rectangle (cur.x1, cur.y1, cur.x2, cur.y2,LS_allegro_get_color(LIGHT_GREEN),1);
+    al_draw_rectangle (cur.coord1.x, cur.coord1.y, cur.coord2.x, cur.coord2.y,LS_allegro_get_color(LIGHT_GREEN),1);
 }
 
 void drawContent (Taulell taulell) {
