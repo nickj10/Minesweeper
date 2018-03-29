@@ -172,7 +172,7 @@ int startGame (Taulell *taulell, Player *player) {
         }
         t1 = (float) clock();
         
-        if ((t1 - t0) / (float)CLOCKS_PER_SEC >= 1) {
+        if (((t1 - t0) / (float)CLOCKS_PER_SEC >= 1) && !gameover) {
             ++(player->temps);
             t0 = (float) clock();
         }

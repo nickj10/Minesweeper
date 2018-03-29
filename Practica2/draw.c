@@ -65,7 +65,7 @@ void drawContent (Taulell taulell) {
             coord_x = (SQUARE_SIZE / 3) + j * (SQUARE_SIZE + 1);
             coord_y = (SQUARE_SIZE / 3) + HEADER_SIZE + i * (SQUARE_SIZE + 1);
             if (taulell.turned[i][j]) {
-                if (taulell.mines[i][j] != 'M') {
+                if (taulell.mines[i][j] != 'M' && taulell.mines[i][j] != '0') {
                     al_draw_textf(LS_allegro_get_font(EXTRA_LARGE),LS_allegro_get_color(BLACK),coord_x,coord_y,0,"%c", taulell.mines[i][j]);
                 }
             }
