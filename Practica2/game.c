@@ -138,7 +138,9 @@ void turnAllSquares (Taulell *taulell) {
     int i, j;
     for (i = 0; i < taulell->fila; i++) {
         for (j = 0; j < taulell->col; j++) {
-            taulell->turned[i][j] = 1;
+            if (!taulell->flags[i][j].activada) {
+                taulell->turned[i][j] = 1;
+            }
         }
     }
 }
@@ -155,7 +157,7 @@ int turnSquare (Cursor cursor, Taulell *taulell) {
 }
 
 void putFlag (Cursor cursor, Taulell *taulell, int *total) {
-    printf ("flag acticada? %d\n", taulell->flags[cursor.row][cursor.column].activada);
+    //printf ("flag acticada? %d\n", taulell->flags[cursor.row][cursor.column].activada);
     if (taulell->flags[cursor.row][cursor.column].activada == 0) {
         taulell->flags[cursor.row][cursor.column].activada = 1;
         (*total)++;
@@ -164,7 +166,7 @@ void putFlag (Cursor cursor, Taulell *taulell, int *total) {
         taulell->flags[cursor.row][cursor.column].activada = 0;
         (*total)--;
     }
-    printf ("total flags: %d\n", *total);
+    //printf ("total flags: %d\n", *total);
 }
 
 int startGame (Taulell *taulell, Player *player) {

@@ -36,7 +36,9 @@ void drawSquares (Taulell taulell) {
             else {
                 if (taulell.turned[i_fil][j_col] == 1) {
                     if (taulell.mines[i_fil][j_col] == 'M') {
-                        al_draw_filled_rectangle (x1, y1, x2, y2,LS_allegro_get_color(RED));
+                        //if (!taulell.flags[i_fil][j_col].activada) {
+                            al_draw_filled_rectangle (x1, y1, x2, y2,LS_allegro_get_color(RED));
+                        //}
                     }
                     else {
                         al_draw_filled_rectangle (x1, y1, x2, y2,LS_allegro_get_color(WHITE));
