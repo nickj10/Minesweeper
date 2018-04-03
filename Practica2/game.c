@@ -156,13 +156,16 @@ void turnAllSquares (Taulell *taulell) {
     }
 }
 
-int turnSquare (Cursor cursor, Taulell *taulell) {
+int turnSquare (Cursor cursor, Taulell *taulell, int *girada) {
     int gameover = 0;
     // Indiquem que la casella esta girada
-    taulell->turned[cursor.row][cursor.column] = 1;
-    if (taulell->mines[cursor.row][cursor.column] == 'M') {
-        turnAllSquares (taulell);
-        gameover = 1;
+    if (taulell->flags[cursor.row][cursor.column].activada == 0) {
+        taulell->turned[cursor.row][cursor.column] = 1;
+        (*girada)++;
+        if (taulell->mines[cursor.row][cursor.column] == 'M') {
+            turnAllSquares (taulell);
+            gameover = 1;
+        }
     }
     return gameover;
 }
@@ -188,6 +191,8 @@ int startGame (Taulell *taulell, Player *player) {
     //Flag *flags;
     int gameover = 0;
     int total_flags = 0;
+    int girades = 0;
+    int win = 0;
     
     // Calcular les dimensions de la pantalla
     width = 81 * taulell->col + 1;
@@ -215,13 +220,17 @@ int startGame (Taulell *taulell, Player *player) {
         }
         t1 = (float) clock();
         
+        if (((girades + total_flags) == taulell->total_squares) && total_flags == taulell->num_mines) {
+            gameover = 1;
+            win = 1;
+        }
+        
         if (((t1 - t0) / (float)CLOCKS_PER_SEC >= 1) && !gameover) {
             ++(player->temps);
             t0 = (float) clock();
         }
-        //Donem l'ordre d'escriure el text de benvinguda
-        //al_draw_textf(LS_allegro_get_font(NORMAL),LS_allegro_get_color(WHITE),200,300,0,"%s","Benvingut a Allegro! Prem ESC per sortir...");
 
+        // Dibuixa per pantalla les diferents parts del joc
         drawHeader (*player, width);
         drawSquares (*taulell);
         drawCursor (cursor);
@@ -242,7 +251,7 @@ int startGame (Taulell *taulell, Player *player) {
             moveCursor(&cursor, RIGHT, height, width);
         }
         if (LS_allegro_key_pressed(ALLEGRO_KEY_SPACE)) {
-            gameover = turnSquare(cursor, taulell);
+            gameover = turnSquare(cursor, taulell, &girades);
         }
         
         // Posem la bandera en la casella corresponent
@@ -250,7 +259,12 @@ int startGame (Taulell *taulell, Player *player) {
             putFlag(cursor, taulell, &total_flags);
         }
         if (gameover) {
-            al_draw_textf(LS_allegro_get_font(EXTRA_LARGE),LS_allegro_get_color(BLACK),width/3,height/2,0,"%s","GAMEOVER");
+            if (win) {
+                al_draw_textf(LS_allegro_get_font(EXTRA_LARGE),LS_allegro_get_color(BLACK),width/3,height/2,0,"%s","HAS GUANYAT!");
+            }
+            else {
+                al_draw_textf(LS_allegro_get_font(EXTRA_LARGE),LS_allegro_get_color(BLACK),width/3,height/2,0,"%s","GAMEOVER");
+            }
         }
         //Pintem la pantalla de la finestra gràfica
         LS_allegro_clear_and_paint(BLACK);

@@ -80,7 +80,7 @@ int myAtoi (char *num);
 Taulell sacarTaulell (FILE *f_taulell);
 void initCursor (Cursor *cur);
 void moveCursor (Cursor *cursor, int direction, int height, int width);
-int turnSquare (Cursor cursor, Taulell *taulell);
+int turnSquare (Cursor cursor, Taulell *taulell, int *girada);
 void turnAllSquares (Taulell *taulell);
 void putFlag (Cursor cursor, Taulell *taulell, int *total);
 int startGame (Taulell *taulell, Player *player);
