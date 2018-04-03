@@ -1,3 +1,13 @@
+/*********************************************************
+ *
+ * @Proposit: Aquest fitxer conté el main on está definit
+ *      el cos del jos, és a dir, el menu principal.
+ * @Autor: Nicole Marie Jimenez Burayag
+ * @Data creacio: 17/03/2018
+ * @Data ultima modificacio: 03/04/2018
+ * 
+ ********************************************************/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

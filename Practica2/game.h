@@ -1,3 +1,14 @@
+/*********************************************************
+ *
+ * @Proposit: Aquest fitxer conté les llibreries, les
+ *      estructures, les constants i els prototipus de les
+ *      funcions del mòdul GAME.
+ * @Autor: Nicole Marie Jimenez Burayag
+ * @Data creacio: 26/03/2018
+ * @Data ultima modificacio: 03/04/2018
+ * 
+ ********************************************************/
+
 #ifndef _GAME_H
 #define _GAME_H
 
@@ -46,10 +57,9 @@ typedef struct {
     int col;
     int fila;
     int num_mines;
+    int total_squares;
     char **mines;
     int **turned;
-    //int **flags;
-    int total_squares;
     Flag **flags;
 } Taulell;
 

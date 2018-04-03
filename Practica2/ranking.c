@@ -1,3 +1,15 @@
+/*********************************************************
+ *
+ * @Proposit: Aquest fitxer conté la implementació de totes
+ *      les funcions del mòdul RANKING. Aquestes funcions
+ *      estan relacionades amb la visualització del rankquing
+ *      i per treure les dades del jugador.
+ * @Autor: Nicole Marie Jimenez Burayag
+ * @Data creacio: 26/03/2018
+ * @Data ultima modificacio: 03/04/2018
+ * 
+ ********************************************************/
+
 #include "ranking.h"
 
 void mostrarRanking () {

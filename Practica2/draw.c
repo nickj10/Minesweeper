@@ -1,3 +1,14 @@
+/*********************************************************
+ *
+ * @Proposit: Aquest fixter conté la implementació de les
+ *      funcions del mòdul DRAW. Aquestes funcions són per
+ *      pintar les diferents parts del joc a la pantalla.
+ * @Autor: Nicole Marie Jimenez Burayag
+ * @Data creacio: 27/03/2018
+ * @Data ultima modificacio: 03/04/2018
+ * 
+ ********************************************************/
+
 #include "draw.h"
 
 void drawHeader (Player player, int width) {

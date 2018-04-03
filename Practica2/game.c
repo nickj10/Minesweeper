@@ -1,3 +1,14 @@
+/*********************************************************
+ *
+ * @Proposit: Aquest fitxer conté la implementació de totes
+ *      les funcions del mòdule GAME. Aquestes funcions 
+ *      tenen a veure amb la lògica del joc.
+ * @Autor: Nicole Marie Jimenez Burayag
+ * @Data creacio: 26/03/2018
+ * @Data ultima modificacio: 03/04/2018
+ * 
+ ********************************************************/
+ 
 #include "game.h"
 #include "draw.h"
 
