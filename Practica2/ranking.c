@@ -57,6 +57,7 @@ char *sacarInfo (char *cad, int *index, char delim) {
     while (cad[*index] != delim) {
         info[i_info++] = cad[(*index)++];
     }
+    info[i_info] = '\0';
     ++(*index);
     return info;
 }

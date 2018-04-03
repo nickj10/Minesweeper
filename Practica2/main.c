@@ -77,6 +77,7 @@ int main () {
                     else {
                         printf ("\nPartida finalitzada per jugador!\n");
                     }
+                    freeMemoria(&taulell, &player);
                 }
 
                 break;

@@ -220,7 +220,9 @@ int startGame (Taulell *taulell, Player *player) {
         }
         t1 = (float) clock();
         
-        if (((girades + total_flags) == taulell->total_squares) && total_flags == taulell->num_mines) {
+        
+        if (((girades + total_flags) == taulell->total_squares) && (total_flags == taulell->num_mines)) {
+            printf ("girades: %d total flags: %d total mines: %d\n", girades, total_flags, taulell->num_mines);
             gameover = 1;
             win = 1;
         }
@@ -292,4 +294,22 @@ int myAtoi (char *num) {
         number *= -1;
     }
     return number;
+}
+
+void freeMemoria (Taulell *taulell, Player *player) {
+    int i;
+    for (i = 0; i < taulell->fila; i++) {
+        free(taulell->mines[i]);
+    }
+    free (taulell->mines);
+    
+    for (i = 0; i < taulell->fila; i++) {
+        free(taulell->turned[i]);
+    }
+    free (taulell->turned);
+    
+    for (i = 0; i < taulell->fila; i++) {
+        free(taulell->flags[i]);
+    }
+    free (taulell->flags);
 }

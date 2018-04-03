@@ -84,5 +84,6 @@ int turnSquare (Cursor cursor, Taulell *taulell, int *girada);
 void turnAllSquares (Taulell *taulell);
 void putFlag (Cursor cursor, Taulell *taulell, int *total);
 int startGame (Taulell *taulell, Player *player);
+void freeMemoria (Taulell *taulell, Player *player);
 
 #endif
