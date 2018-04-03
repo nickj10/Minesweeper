@@ -51,8 +51,16 @@ Taulell sacarTaulell (FILE *f_taulell) {
     
     // Guardem memoria per al taulell
     taulell.mines = (char**)malloc(sizeof(char*) * taulell.fila);
-    for (i = 0; i < taulell.fila; i++) {
-        taulell.mines[i] = (char*)malloc(sizeof(char) * taulell.col);
+    if (taulell.mines == NULL) {
+        printf ("Error, no s'ha creat la memoria per al contingut del taulell.\n");
+    }
+    else {
+        for (i = 0; i < taulell.fila; i++) {
+            taulell.mines[i] = (char*)malloc(sizeof(char) * taulell.col);
+            if (taulell.mines[i] == NULL) {
+                printf ("Error, no s'ha creat la memoria per al contingut del taulell.\n")
+            }
+        }
     }
     
     // Llegir cada fila del fitxer per construir el taulell
