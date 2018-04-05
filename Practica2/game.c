@@ -58,7 +58,7 @@ Taulell sacarTaulell (FILE *f_taulell) {
         for (i = 0; i < taulell.fila; i++) {
             taulell.mines[i] = (char*)malloc(sizeof(char) * taulell.col);
             if (taulell.mines[i] == NULL) {
-                printf ("Error, no s'ha creat la memoria per al contingut del taulell.\n")
+                printf ("Error, no s'ha creat la memoria per al contingut del taulell.\n");
             }
         }
     }
@@ -320,4 +320,7 @@ void freeMemoria (Taulell *taulell, Player *player) {
         free(taulell->flags[i]);
     }
     free (taulell->flags);
+    
+    free (player->nom_player);
+    free (player->nom_taulell);
 }
