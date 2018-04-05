@@ -89,7 +89,6 @@ Taulell sacarTaulell (FILE *f_taulell) {
     }
     
     // Inicialitzar les banderes
-    //taulell.flags = (Flag*)malloc(sizeof(Flag) * total_squares);
     taulell.flags = (Flag**)malloc(sizeof(Flag*) * taulell.fila);
     for (i = 0; i < taulell.fila; i++) {
         taulell.flags[i] = (Flag*)malloc(taulell.col * sizeof(Flag));
@@ -179,7 +178,6 @@ int turnSquare (Cursor cursor, Taulell *taulell, int *girada) {
 }
 
 void putFlag (Cursor cursor, Taulell *taulell, int *total) {
-    //printf ("flag acticada? %d\n", taulell->flags[cursor.row][cursor.column].activada);
     if (taulell->flags[cursor.row][cursor.column].activada == 0) {
         taulell->flags[cursor.row][cursor.column].activada = 1;
         (*total)++;
@@ -188,7 +186,6 @@ void putFlag (Cursor cursor, Taulell *taulell, int *total) {
         taulell->flags[cursor.row][cursor.column].activada = 0;
         (*total)--;
     }
-    //printf ("total flags: %d\n", *total);
 }
 
 int startGame (Taulell *taulell, Player *player) {
@@ -208,7 +205,6 @@ int startGame (Taulell *taulell, Player *player) {
   
     // Inicialitzem el cursor i els flags
     initCursor (&cursor);
-    //flags = (Flag*)malloc(sizeof(Flag) * taulell->total_squares); //L'usuari pot posar tantes banderes com caselles en el taulell pero no vol dir que guanya
     
     printf ("c:%d f:%d m:%d\n", taulell->col, taulell->fila, taulell->num_mines);
     printf ("w: %d h: %d\n", width, height);
