@@ -5,21 +5,21 @@
   <TabInfoArray Name="TabInfoArray">
     <TabInfo>
       <wxString Value="C:\Users\PGM\Documents\practica2_buscamines\Practica2\main.c" Name="FileName"/>
-      <int Value="57" Name="FirstVisibleLine"/>
+      <int Value="61" Name="FirstVisibleLine"/>
       <int Value="79" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>
     <TabInfo>
       <wxString Value="C:\Users\PGM\Documents\practica2_buscamines\Practica2\game.c" Name="FileName"/>
-      <int Value="55" Name="FirstVisibleLine"/>
-      <int Value="53" Name="CurrentLine"/>
+      <int Value="305" Name="FirstVisibleLine"/>
+      <int Value="324" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>
     <TabInfo>
       <wxString Value="C:\Users\PGM\Documents\practica2_buscamines\Practica2\game.h" Name="FileName"/>
-      <int Value="51" Name="FirstVisibleLine"/>
+      <int Value="18" Name="FirstVisibleLine"/>
       <int Value="86" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>

@@ -20,5 +20,6 @@
 char *sacarInfo (char *cad, int *index, char delim);
 Player sacarPlayer (char *cad);
 void mostrarRanking ();
+void addRanking (Player jugador);
 
 #endif

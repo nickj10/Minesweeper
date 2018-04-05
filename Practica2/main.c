@@ -73,6 +73,7 @@ int main () {
                         printf ("\nEl jugador: %s\n", player.nom_player);
                         printf ("Puntuacio: %d\n\n", player.temps);
                         printf ("Partida finalitzada correctament!\n");
+                        addRanking (player);
                     }
                     else {
                         printf ("\nPartida finalitzada per jugador!\n");

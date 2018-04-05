@@ -228,7 +228,6 @@ int startGame (Taulell *taulell, Player *player) {
         }
         t1 = (float) clock();
         
-        
         if (((girades + total_flags) == taulell->total_squares) && (total_flags == taulell->num_mines)) {
             printf ("girades: %d total flags: %d total mines: %d\n", girades, total_flags, taulell->num_mines);
             gameover = 1;
@@ -246,34 +245,37 @@ int startGame (Taulell *taulell, Player *player) {
         drawCursor (cursor);
         drawContent (*taulell);
         drawFlags(*taulell);
-        
-        // Mou el cursor segons el key
-        if (LS_allegro_key_pressed(ALLEGRO_KEY_UP)) {
-            moveCursor(&cursor, UP, height, width);
-        }
-        if (LS_allegro_key_pressed(ALLEGRO_KEY_DOWN)) {
-            moveCursor(&cursor, DOWN, height, width);
-        }
-        if (LS_allegro_key_pressed(ALLEGRO_KEY_LEFT)) {
-            moveCursor(&cursor, LEFT, height, width);
-        }
-        if (LS_allegro_key_pressed(ALLEGRO_KEY_RIGHT)) {
-            moveCursor(&cursor, RIGHT, height, width);
-        }
-        if (LS_allegro_key_pressed(ALLEGRO_KEY_SPACE)) {
-            gameover = turnSquare(cursor, taulell, &girades);
-        }
-        
-        // Posem la bandera en la casella corresponent
-        if (LS_allegro_key_pressed(ALLEGRO_KEY_F)) {
-            putFlag(cursor, taulell, &total_flags);
-        }
+
         if (gameover) {
             if (win) {
                 al_draw_textf(LS_allegro_get_font(EXTRA_LARGE),LS_allegro_get_color(BLACK),width/3,height/2,0,"%s","HAS GUANYAT!");
             }
             else {
                 al_draw_textf(LS_allegro_get_font(EXTRA_LARGE),LS_allegro_get_color(BLACK),width/3,height/2,0,"%s","GAMEOVER");
+            }
+        }
+        else {
+            // No es pot fer res més si ja s'ha acabat la partida
+            // Mou el cursor segons el key
+            if (LS_allegro_key_pressed(ALLEGRO_KEY_UP)) {
+                moveCursor(&cursor, UP, height, width);
+            }
+            if (LS_allegro_key_pressed(ALLEGRO_KEY_DOWN)) {
+                moveCursor(&cursor, DOWN, height, width);
+            }
+            if (LS_allegro_key_pressed(ALLEGRO_KEY_LEFT)) {
+                moveCursor(&cursor, LEFT, height, width);
+            }
+            if (LS_allegro_key_pressed(ALLEGRO_KEY_RIGHT)) {
+                moveCursor(&cursor, RIGHT, height, width);
+            }
+            if (LS_allegro_key_pressed(ALLEGRO_KEY_SPACE)) {
+                gameover = turnSquare(cursor, taulell, &girades);
+            }
+            
+            // Posem la bandera en la casella corresponent
+            if (LS_allegro_key_pressed(ALLEGRO_KEY_F)) {
+                putFlag(cursor, taulell, &total_flags);
             }
         }
         //Pintem la pantalla de la finestra gràfica

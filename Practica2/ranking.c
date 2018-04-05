@@ -62,3 +62,14 @@ char *sacarInfo (char *cad, int *index, char delim) {
     return info;
 }
 
+void addRanking (Player jugador) {
+    FILE *f_ranking;
+    
+    f_ranking = fopen ("ranquing.txt","a");
+    if (f_ranking == NULL) {
+        printf ("Error, no es pot obrir el fitxer ranquing.txt\n");
+    }
+    else {
+        fprintf (f_ranking, "%s#%s#%d\n", jugador.nom_player, jugador.nom_taulell, jugador.temps);
+    }
+}
