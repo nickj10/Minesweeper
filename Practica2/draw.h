@@ -22,5 +22,6 @@ void drawSquares (Taulell taulell);
 void drawCursor (Cursor cur);
 void drawContent (Taulell taulell);
 void drawFlags (Taulell taulell);
+void drawGameover (int width, int height);
 
 #endif

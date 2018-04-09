@@ -1,6 +1,24 @@
 Nicole Jimenez#test.txt#400
 Kaye Ignacio#test2.txt#450
 Grace Adina#test3.txt#900
-
 nj#test.txt#2
 hello#test.txt#4
+nj#test.txt#4
+nj#test2.txt#28
+nj#test2.txt#1
+nj#test.txt#1
+nj#test2.txt#1
+nj#test2.txt#1
+NJ#test2.txt#1
+nj#test2.txt#2
+nj#test2.txt#1
+nj#test2.txt#1
+nj#test2.txt#1
+nj#test2.txt#1
+nj#test.txt#1
+nj#test.txt#1
+nj#test.txt#1
+nj#test.txt#3
+test#test.txt#1
+nj#test.txt#1
+nj#test.txt#1

@@ -247,7 +247,7 @@ int startGame (Taulell *taulell, Player *player) {
                 al_draw_textf(LS_allegro_get_font(EXTRA_LARGE),LS_allegro_get_color(BLACK),width/3,height/2,0,"%s","HAS GUANYAT!");
             }
             else {
-                al_draw_textf(LS_allegro_get_font(EXTRA_LARGE),LS_allegro_get_color(BLACK),width/3,height/2,0,"%s","GAMEOVER");
+                drawGameover(width, height);
             }
         }
         else {
@@ -270,7 +270,7 @@ int startGame (Taulell *taulell, Player *player) {
             }
             
             // Posem la bandera en la casella corresponent
-            if (LS_allegro_key_pressed(ALLEGRO_KEY_F)) {
+            if (LS_allegro_key_pressed(ALLEGRO_KEY_B)) {
                 putFlag(cursor, taulell, &total_flags);
             }
         }

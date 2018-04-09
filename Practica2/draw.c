@@ -15,16 +15,16 @@ void drawHeader (Player player, int width) {
     al_draw_textf(LS_allegro_get_font(NORMAL),LS_allegro_get_color(WHITE),5,5,0,"%s","NOM:");
     al_draw_textf(LS_allegro_get_font(NORMAL),LS_allegro_get_color(WHITE),width/2,5,0,"%s","TEMPS:");
     if (strlen(player.nom_player) <= 10) {
-        al_draw_textf(LS_allegro_get_font(EXTRA_LARGE),LS_allegro_get_color(WHITE),25,20,0,"%s", player.nom_player);
-        al_draw_textf(LS_allegro_get_font(EXTRA_LARGE),LS_allegro_get_color(WHITE),width/2 + 20, 20,0,"%d", player.temps);
+        al_draw_textf(LS_allegro_get_font(EXTRA_LARGE),LS_allegro_get_color(WHITE),width/15,20,0,"%s", player.nom_player);
+        al_draw_textf(LS_allegro_get_font(EXTRA_LARGE),LS_allegro_get_color(WHITE),width/2 + width/15, 20,0,"%d", player.temps);
     }
     else {
         if (strlen(player.nom_player) <= 15) {
-            al_draw_textf(LS_allegro_get_font(LARGE),LS_allegro_get_color(WHITE),25,20,0,"%s", player.nom_player);
-            al_draw_textf(LS_allegro_get_font(LARGE),LS_allegro_get_color(WHITE),width/2 + 20, 20,0,"%d", player.temps);
+            al_draw_textf(LS_allegro_get_font(LARGE),LS_allegro_get_color(WHITE),width/15,20,0,"%s", player.nom_player);
+            al_draw_textf(LS_allegro_get_font(LARGE),LS_allegro_get_color(WHITE),width/2 + width/15, 20,0,"%d", player.temps);
         }
         else {
-            al_draw_textf(LS_allegro_get_font(NORMAL),LS_allegro_get_color(WHITE),25,20,0,"%s", player.nom_player);
+            al_draw_textf(LS_allegro_get_font(NORMAL),LS_allegro_get_color(WHITE),width/15,20,0,"%s", player.nom_player);
             al_draw_textf(LS_allegro_get_font(NORMAL),LS_allegro_get_color(WHITE),width/2 + 20, 20,0,"%d", player.temps);
         }
     }
@@ -108,4 +108,31 @@ void drawFlags (Taulell taulell) {
             }
         }
     }
+}
+
+void drawGameover (int width, int height) {
+    Coordenada rect1;
+    Coordenada rect2;
+    int size;
+    rect1.x = width / 5.0;
+    rect1.y = height / 3.0;
+    rect2.x = width - (width / 5.0);
+    rect2.y = height - (height / 3.0);
+    printf ("w: %d, h: %d\n", width, height);
+    printf ("dim rect: %d %d %d %d\n", rect1.x, rect1.y, rect2.x, rect2.y);
+    al_draw_filled_rectangle (rect1.x, rect1.y, rect2.x, rect2.y,LS_allegro_get_color(BLACK));
+    al_draw_rectangle (rect1.x - 2, rect1.y - 2, rect2.x + 2, rect2.y + 2,LS_allegro_get_color(BLUE),2);
+    if (width < 300) {
+        size = NORMAL;
+    }
+    else {
+        if (width < 500) {
+            size = LARGE;
+        }
+        else {
+            size = EXTRA_LARGE;
+            
+        }
+    }
+    al_draw_textf(LS_allegro_get_font(size),LS_allegro_get_color(RED),width/3,height/2 - 20,0,"%s","GAMEOVER");
 }
