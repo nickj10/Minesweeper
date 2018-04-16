@@ -2,6 +2,7 @@
 #define _FLAG_H
 
 #include <stdio.h>
+#include <stdlib.h>
 
 typedef struct {
 	int fila;
@@ -26,6 +27,7 @@ int FLAG_vacia (Flags f);
 void FLAG_irInicio (Flags *f);
 void FLAG_avanzar (Flags *f);
 int FLAG_final (Flags f);
+int FLAG_existeElemento(Flags *f, Elemento e);
 void FLAG_destruye (Flags *f);
 
 #endif

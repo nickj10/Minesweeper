@@ -89,14 +89,12 @@ Taulell sacarTaulell (FILE *f_taulell) {
     }
     
     // Inicialitzar les banderes
-    taulell.flags = (Flag**)malloc(sizeof(Flag*) * taulell.fila);
+    /*taulell.flags_coord = (Flagcoord**)malloc(sizeof(Flagcoord*) * taulell.fila);
     for (i = 0; i < taulell.fila; i++) {
-        taulell.flags[i] = (Flag*)malloc(taulell.col * sizeof(Flag));
-        for (j = 0; j < taulell.col; j++) {
-            taulell.flags[i][j].activada = 0;
-        }
-    }
-    
+        taulell.flags_coord[i] = (Flagcoord*)malloc(taulell.col * sizeof(Flagcoord));
+    }*/
+    taulell.lista = FLAG_crea();
+    printf ("Se ha creado la lista.\n");
     return taulell;
 }
 
@@ -154,9 +152,12 @@ void moveCursor (Cursor *cursor, int direction, int height, int width) {
 
 void turnAllSquares (Taulell *taulell) {
     int i, j;
+    Elemento aux;
     for (i = 0; i < taulell->fila; i++) {
         for (j = 0; j < taulell->col; j++) {
-            if (!taulell->flags[i][j].activada) {
+            aux.fila = i;
+            aux.col = j;
+            if (!FLAG_existeElemento(&taulell->lista, aux)) {
                 taulell->turned[i][j] = 1;
             }
         }
@@ -165,8 +166,11 @@ void turnAllSquares (Taulell *taulell) {
 
 int turnSquare (Cursor cursor, Taulell *taulell, int *girada) {
     int gameover = 0;
+    Elemento aux;
+    aux.col = cursor.column;
+    aux.fila = cursor.row;
     // Indiquem que la casella esta girada
-    if (taulell->flags[cursor.row][cursor.column].activada == 0) {
+    if (!FLAG_existeElemento(&taulell->lista, aux)) {
         taulell->turned[cursor.row][cursor.column] = 1;
         (*girada)++;
         if (taulell->mines[cursor.row][cursor.column] == 'M') {
@@ -178,13 +182,29 @@ int turnSquare (Cursor cursor, Taulell *taulell, int *girada) {
 }
 
 void putFlag (Cursor cursor, Taulell *taulell, int *total) {
-    if (taulell->flags[cursor.row][cursor.column].activada == 0) {
+    Elemento e;
+    Elemento ready;
+    e.col = cursor.column;
+    e.fila = cursor.row;
+    /*if (taulell->flags[cursor.row][cursor.column].activada == 0) {
         taulell->flags[cursor.row][cursor.column].activada = 1;
         (*total)++;
     }
     else {
         taulell->flags[cursor.row][cursor.column].activada = 0;
         (*total)--;
+    }
+    */
+    if (FLAG_existeElemento(&(taulell->lista), e)) {
+        printf ("Ya existe el flag en la lista.\n");
+        ready = FLAG_consultar(taulell->lista);
+        printf ("We need to delete in the coordinates f:%d c:%d\n", ready.fila, ready.col);
+        FLAG_borrar(&taulell->lista);
+        (*total)--;
+    }
+    else {
+        FLAG_inserir(&taulell->lista, e);
+        (*total)++;
     }
 }
 
@@ -314,11 +334,13 @@ void freeMemoria (Taulell *taulell, Player *player) {
     }
     free (taulell->turned);
     
-    for (i = 0; i < taulell->fila; i++) {
-        free(taulell->flags[i]);
+    /*for (i = 0; i < taulell->fila; i++) {
+        free(taulell->flags_coord[i]);
     }
-    free (taulell->flags);
+    free (taulell->flags_coord);*/
     
     free (player->nom_player);
     free (player->nom_taulell);
+    
+    //FLAG_destruye(&taulell->lista);
 }

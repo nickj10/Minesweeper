@@ -26,6 +26,7 @@ void FLAG_inserir (Flags *f, Elemento e) {
 		f->ant->sig = aux;
 		f->ant = aux;
 	}
+    printf ("inserted the element: f%d c%d\n", aux->e.fila, aux->e.col);
 }
 
 void FLAG_borrar (Flags *f) {
@@ -39,13 +40,13 @@ void FLAG_borrar (Flags *f) {
 
 Elemento FLAG_consultar (Flags f) {
     Elemento e;
-    if (f->ant->sig == NULL) {
+    if (f.ant->sig == NULL) {
         e.col = -1;
         e.fila = -1;
     }
     else {
-        e.col = f->ant->e.col;
-        e.fila = f->ant->e.fila;
+        e.col = f.ant->e.col;
+        e.fila = f.ant->e.fila;
     }
     return e;
 }
@@ -69,6 +70,27 @@ void FLAG_avanzar (Flags *f) {
 
 int FLAG_final (Flags f) {
     return f.ant->sig == NULL;
+}
+
+int FLAG_existeElemento(Flags *f, Elemento e) {
+    Elemento aux;
+    int trobat = 0;
+    if (FLAG_vacia(*f)) {
+        //printf ("\nEsta vacia la lista de banderas.\n");
+    }
+    else {
+        FLAG_irInicio(f);
+        while (!FLAG_final(*f) && !trobat) {
+            aux = FLAG_consultar(*f);
+            //printf ("elem de la lista: f-%d c-%d, elemento pasado: f-%d c-%d\n", aux.fila, aux.col, e.fila, e.col);
+            if (aux.col == e.col && aux.fila == e.fila) {
+                trobat = 1;
+            }
+            FLAG_avanzar(f);
+        }
+    }
+    
+    return trobat;
 }
 
 void FLAG_destruye (Flags *f) {

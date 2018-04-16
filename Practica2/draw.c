@@ -88,9 +88,12 @@ void drawContent (Taulell taulell) {
 
 void drawFlags (Taulell taulell) {
     int i, j;
-    Flag aux;
+    Flagcoord aux;
+    Elemento e;
     for (i = 0; i < taulell.fila; i++) {
         for (j = 0; j < taulell.col; j++) {
+            e.col = j;
+            e.fila = i;
             aux.coord1.x = (SQUARE_SIZE / 4) + j * (SQUARE_SIZE + 1);
             aux.coord1.y = (SQUARE_SIZE / 4) + HEADER_SIZE + i * (SQUARE_SIZE + 1);
             aux.coord2.x = aux.coord1.x;
@@ -98,7 +101,7 @@ void drawFlags (Taulell taulell) {
             aux.coord3.x = (SQUARE_SIZE - (SQUARE_SIZE / 4)) + j * (SQUARE_SIZE + 1);
             aux.coord3.y = (SQUARE_SIZE / 2) + HEADER_SIZE + i * (SQUARE_SIZE + 1);
             if (taulell.turned[i][j] == 0) {
-                if (taulell.flags[i][j].activada == 1) {
+                if (FLAG_existeElemento(&taulell.lista, e)) {
                     // Dibuixar la bandera
                     al_draw_filled_triangle (aux.coord1.x, aux.coord1.y, aux.coord2.x, aux.coord2.y, aux.coord3.x, aux.coord3.y,LS_allegro_get_color(DARK_GREEN));
                 }
@@ -118,8 +121,8 @@ void drawGameover (int width, int height) {
     rect1.y = height / 3.0;
     rect2.x = width - (width / 5.0);
     rect2.y = height - (height / 3.0);
-    printf ("w: %d, h: %d\n", width, height);
-    printf ("dim rect: %d %d %d %d\n", rect1.x, rect1.y, rect2.x, rect2.y);
+    //printf ("w: %d, h: %d\n", width, height);
+    //printf ("dim rect: %d %d %d %d\n", rect1.x, rect1.y, rect2.x, rect2.y);
     al_draw_filled_rectangle (rect1.x, rect1.y, rect2.x, rect2.y,LS_allegro_get_color(BLACK));
     al_draw_rectangle (rect1.x - 2, rect1.y - 2, rect2.x + 2, rect2.y + 2,LS_allegro_get_color(BLUE),2);
     if (width < 300) {

@@ -25,3 +25,8 @@ nj#test.txt#1
 nj#test2.txt#12
 nj#test2.txt#33
 nj#test.txt#40
+nj#test2.txt#10
+nj#test2.txt#20
+nj#test2.txt#10
+nj#test2.txt#10
+nj#test2.txt#530

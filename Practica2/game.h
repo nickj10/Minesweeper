@@ -15,6 +15,7 @@
 #include <stdio.h>
 #include <time.h>
 #include "LS_allegro.h"
+#include "flag.h"
 
 #define MAXNOM 30
 #define MAXAUX 50
@@ -35,23 +36,16 @@ typedef struct {
     int y;
 } Coordenada;
 
-/*typedef struct {
-    int activada;
-    int row;
-    int column;
-    int coord1;
-    int coord2;
-    int coord3;
-} Flag; */
 
 typedef struct {
-    int activada;
-    int row;
-    int column;
+    //int activada;
+    //int row;
+    //int column;
+    //Elemento e;
     Coordenada coord1;
     Coordenada coord2;
     Coordenada coord3;
-} Flag;
+} Flagcoord;
 
 typedef struct {
     int col;
@@ -60,7 +54,8 @@ typedef struct {
     int total_squares;
     char **mines;
     int **turned;
-    Flag **flags;
+    //Flagcoord **flags_coord;
+    Flags lista;
 } Taulell;
 
 typedef struct {
