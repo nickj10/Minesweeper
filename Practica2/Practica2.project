@@ -20,6 +20,8 @@
   <Description/>
   <Dependencies/>
   <VirtualDirectory Name="src">
+    <File Name="flag.h"/>
+    <File Name="flag.c"/>
     <File Name="draw.h"/>
     <File Name="draw.c"/>
     <File Name="ranking.c"/>
