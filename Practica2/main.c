@@ -70,6 +70,7 @@ int main () {
                     player.temps = 0;
                     gameover = startGame (&taulell, &player);
                     if (gameover) {
+                        player.temps *= taulell.num_mines;
                         printf ("\nEl jugador: %s\n", player.nom_player);
                         printf ("Puntuacio: %d\n\n", player.temps);
                         printf ("Partida finalitzada correctament!\n");

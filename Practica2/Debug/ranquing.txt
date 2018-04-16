@@ -22,3 +22,6 @@ nj#test.txt#3
 test#test.txt#1
 nj#test.txt#1
 nj#test.txt#1
+nj#test2.txt#12
+nj#test2.txt#33
+nj#test.txt#40
