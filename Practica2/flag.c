@@ -31,6 +31,9 @@ void FLAG_inserir (Flags *f, Elemento e) {
 
 void FLAG_borrar (Flags *f) {
     Nodo *aux;
+    Elemento basura;
+    basura = FLAG_consultar(*f);
+    printf ("antes de borrar: f%d c%d\n", basura.fila, basura.col);
     if (f->ant->sig != NULL) {
         aux = f->ant->sig;
         f->ant->sig = aux->sig;
@@ -86,7 +89,9 @@ int FLAG_existeElemento(Flags *f, Elemento e) {
             if (aux.col == e.col && aux.fila == e.fila) {
                 trobat = 1;
             }
-            FLAG_avanzar(f);
+            if (!trobat) {
+                FLAG_avanzar(f);
+            }
         }
     }
     

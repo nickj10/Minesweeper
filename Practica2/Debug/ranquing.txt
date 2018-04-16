@@ -30,3 +30,5 @@ nj#test2.txt#20
 nj#test2.txt#10
 nj#test2.txt#10
 nj#test2.txt#530
+nj#test2.txt#10
+nj#test2.txt#60
