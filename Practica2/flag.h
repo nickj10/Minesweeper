@@ -1,3 +1,13 @@
+/*********************************************************
+ *
+ * @Proposit: Aquest fitxer conté les llibreries i els
+ *      prototipus de les funcions del mòdul FLAG.
+ * @Autor: Nicole Marie Jimenez Burayag
+ * @Data creacio: 16/04/2018
+ * @Data ultima modificacio: 17/04/2018
+ * 
+ ********************************************************/
+
 #ifndef _FLAG_H
 #define _FLAG_H
 

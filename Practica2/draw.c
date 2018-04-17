@@ -5,7 +5,7 @@
  *      pintar les diferents parts del joc a la pantalla.
  * @Autor: Nicole Marie Jimenez Burayag
  * @Data creacio: 27/03/2018
- * @Data ultima modificacio: 03/04/2018
+ * @Data ultima modificacio: 17/04/2018
  * 
  ********************************************************/
 
@@ -112,35 +112,6 @@ void drawFlags (Taulell taulell) {
         }
     }
 }
-/*void drawFlags (Taulell taulell) {
-    Flagcoord aux;
-    Elemento e;
-    int i, j, k;
-    if (FLAG_vacia(taulell.lista)) {
-        printf ("\nNo hay flags to draw.\n");
-    }
-    else {
-        FLAG_irInicio(&taulell.lista);
-        printf ("bruh\n");
-        while (!FLAG_final(taulell.lista)) {
-            e = FLAG_consultar(taulell.lista);
-            i = e.fila;
-            j = e.col;
-            printf ("umabot\n");
-            // Calculem les coordenades dels triangles
-            aux.coord1.x = (SQUARE_SIZE / 4) + j * (SQUARE_SIZE + 1);
-            aux.coord1.y = (SQUARE_SIZE / 4) + HEADER_SIZE + i * (SQUARE_SIZE + 1);
-            aux.coord2.x = aux.coord1.x;
-            aux.coord2.y = aux.coord1.y + (SQUARE_SIZE / 2);
-            aux.coord3.x = (SQUARE_SIZE - (SQUARE_SIZE / 4)) + j * (SQUARE_SIZE + 1);
-            aux.coord3.y = (SQUARE_SIZE / 2) + HEADER_SIZE + i * (SQUARE_SIZE + 1);  
-            
-            // Dibuixar la bandera
-            al_draw_filled_triangle (aux.coord1.x, aux.coord1.y, aux.coord2.x, aux.coord2.y, aux.coord3.x, aux.coord3.y,LS_allegro_get_color(DARK_GREEN));
-        }
-    }
-
-}*/
 
 void drawGameover (int width, int height) {
     Coordenada rect1;

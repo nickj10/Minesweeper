@@ -1,3 +1,16 @@
+/*********************************************************
+ *
+ * @Proposit: Aquest fixter conté la implementació de les
+ *      funcions del mòdul FLAG, basat en l'estructura
+ *      de dades lineals Llista PDI. Aquestes funcions són 
+ *      per crear una llista de banderes, guardant la columna
+ *      i la fila on està cadascuna d'elles.
+ * @Autor: Nicole Marie Jimenez Burayag
+ * @Data creacio: 16/04/2018
+ * @Data ultima modificacio: 17/04/2018
+ * 
+ ********************************************************/
+
 #include "flag.h"
 
 Flags FLAG_crea () {
@@ -19,7 +32,7 @@ void FLAG_inserir (Flags *f, Elemento e) {
 	Nodo *aux;
 	aux = (Nodo*)malloc(sizeof(Nodo));
 	if (aux == NULL) {
-		printf ("Error en crear una bandera.\n");
+		printf ("Error en afegir la bandera a la llista.\n");
 	}
 	else {
 		aux->e.fila = e.fila;
@@ -28,14 +41,10 @@ void FLAG_inserir (Flags *f, Elemento e) {
 		f->ant->sig = aux;
 		f->ant = aux;
 	}
-    printf ("inserted the element: f%d c%d\n", aux->e.fila, aux->e.col);
 }
 
 void FLAG_borrar (Flags *f) {
     Nodo *aux;
-    Elemento basura;
-    basura = FLAG_consultar(*f);
-    printf ("antes de borrar: f%d c%d\n", basura.fila, basura.col);
     if (f->ant->sig != NULL) {
         aux = f->ant->sig;
         f->ant->sig = aux->sig;
@@ -82,13 +91,12 @@ int FLAG_existeElemento(Flags *f, Elemento e) {
     Elemento aux;
     int trobat = 0;
     if (FLAG_vacia(*f)) {
-        printf ("\nEsta vacia la lista de banderas.\n");
+        printf ("La llista de banderes esta buida.\n");
     }
     else {
         FLAG_irInicio(f);
         while (!FLAG_final(*f) && !trobat) {
             aux = FLAG_consultar(*f);
-            //printf ("elem de la lista: f-%d c-%d, elemento pasado: f-%d c-%d\n", aux.fila, aux.col, e.fila, e.col);
             if (aux.col == e.col && aux.fila == e.fila) {
                 trobat = 1;
             }
@@ -97,7 +105,6 @@ int FLAG_existeElemento(Flags *f, Elemento e) {
             }
         }
     }
-    
     return trobat;
 }
 

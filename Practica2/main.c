@@ -4,7 +4,7 @@
  *      el cos del jos, és a dir, el menu principal.
  * @Autor: Nicole Marie Jimenez Burayag
  * @Data creacio: 17/03/2018
- * @Data ultima modificacio: 03/04/2018
+ * @Data ultima modificacio: 17/04/2018
  * 
  ********************************************************/
 
@@ -66,7 +66,6 @@ int main () {
                     taulell = sacarTaulell (f_taulell);
                     printf ("%d - %d - %d\n", taulell.col, taulell.fila, taulell.num_mines);
                     printf ("Partida iniciada correctament.\n");
-                    // De moment, posem 269 com a temps per el jugador
                     player.temps = 0;
                     gameover = startGame (&taulell, &player);
                     if (gameover) {

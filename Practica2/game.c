@@ -5,7 +5,7 @@
  *      tenen a veure amb la lògica del joc.
  * @Autor: Nicole Marie Jimenez Burayag
  * @Data creacio: 26/03/2018
- * @Data ultima modificacio: 03/04/2018
+ * @Data ultima modificacio: 17/04/2018
  * 
  ********************************************************/
  
@@ -157,6 +157,8 @@ void turnAllSquares (Taulell *taulell) {
         for (j = 0; j < taulell->col; j++) {
             aux.fila = i;
             aux.col = j;
+            
+            // Si hi ha una bandera en la casella, no la podem girar
             if (!FLAG_existeElemento(&taulell->lista, aux)) {
                 taulell->turned[i][j] = 1;
             }
@@ -183,30 +185,20 @@ int turnSquare (Cursor cursor, Taulell *taulell, int *girada) {
 
 void putFlag (Cursor cursor, Taulell *taulell, int *total) {
     Elemento e;
-    Elemento ready;
     e.col = cursor.column;
     e.fila = cursor.row;
-    /*if (taulell->flags[cursor.row][cursor.column].activada == 0) {
-        taulell->flags[cursor.row][cursor.column].activada = 1;
-        (*total)++;
-    }
-    else {
-        taulell->flags[cursor.row][cursor.column].activada = 0;
-        (*total)--;
-    }
-    */
+
+    // Mirem si ja existeix la bandera en el taulell
     if (FLAG_existeElemento(&(taulell->lista), e)) {
-        printf ("Ya existe el flag en la lista.\n");
-        ready = FLAG_consultar(taulell->lista);
-        printf ("We need to delete in the coordinates f:%d c:%d\n", ready.fila, ready.col);
+        // Eliminem la bandera si existeix
         FLAG_borrar(&taulell->lista);
         (*total)--;
     }
     else {
+        // Afegim la bandera a la llista si no existeix
         FLAG_inserir(&taulell->lista, e);
         (*total)++;
     }
-    printf ("Total banderes: %d\n", *total);
 }
 
 int startGame (Taulell *taulell, Player *player) {
@@ -234,7 +226,6 @@ int startGame (Taulell *taulell, Player *player) {
     
     //Inicialitzem Allegro
     LS_allegro_init(width, height, "Buscamines");
-    //LS_allegro_init(1280,720, "hello");
     
     //Bucle infinit del joc
     while(!nSortir){
