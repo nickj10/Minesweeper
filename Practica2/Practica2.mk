@@ -13,7 +13,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=PGM
-Date                   :=16/04/2018
+Date                   :=17/04/2018
 CodeLitePath           :="C:/Program Files/CodeLite"
 LinkerName             :=C:/MinGW-4.8.1/bin/g++.exe
 SharedObjectLinkerName :=C:/MinGW-4.8.1/bin/g++.exe -shared -fPIC
@@ -62,7 +62,7 @@ AS       := C:/MinGW-4.8.1/bin/as.exe
 ## User defined environment variables
 ##
 CodeLiteDir:=C:\Program Files\CodeLite
-Objects0=$(IntermediateDirectory)/game.c$(ObjectSuffix) $(IntermediateDirectory)/flag.c$(ObjectSuffix) $(IntermediateDirectory)/draw.c$(ObjectSuffix) $(IntermediateDirectory)/ranking.c$(ObjectSuffix) $(IntermediateDirectory)/main.c$(ObjectSuffix) $(IntermediateDirectory)/LS_allegro.c$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/flag.c$(ObjectSuffix) $(IntermediateDirectory)/game.c$(ObjectSuffix) $(IntermediateDirectory)/draw.c$(ObjectSuffix) $(IntermediateDirectory)/ranking.c$(ObjectSuffix) $(IntermediateDirectory)/main.c$(ObjectSuffix) $(IntermediateDirectory)/LS_allegro.c$(ObjectSuffix) 
 
 
 
@@ -93,14 +93,6 @@ PreBuild:
 ##
 ## Objects
 ##
-$(IntermediateDirectory)/game.c$(ObjectSuffix): game.c $(IntermediateDirectory)/game.c$(DependSuffix)
-	$(CC) $(SourceSwitch) "C:/Users/PGM/Documents/practica2_buscamines/Practica2/game.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/game.c$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/game.c$(DependSuffix): game.c
-	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/game.c$(ObjectSuffix) -MF$(IntermediateDirectory)/game.c$(DependSuffix) -MM game.c
-
-$(IntermediateDirectory)/game.c$(PreprocessSuffix): game.c
-	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/game.c$(PreprocessSuffix) game.c
-
 $(IntermediateDirectory)/flag.c$(ObjectSuffix): flag.c $(IntermediateDirectory)/flag.c$(DependSuffix)
 	$(CC) $(SourceSwitch) "C:/Users/PGM/Documents/practica2_buscamines/Practica2/flag.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/flag.c$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/flag.c$(DependSuffix): flag.c
@@ -108,6 +100,14 @@ $(IntermediateDirectory)/flag.c$(DependSuffix): flag.c
 
 $(IntermediateDirectory)/flag.c$(PreprocessSuffix): flag.c
 	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/flag.c$(PreprocessSuffix) flag.c
+
+$(IntermediateDirectory)/game.c$(ObjectSuffix): game.c $(IntermediateDirectory)/game.c$(DependSuffix)
+	$(CC) $(SourceSwitch) "C:/Users/PGM/Documents/practica2_buscamines/Practica2/game.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/game.c$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/game.c$(DependSuffix): game.c
+	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/game.c$(ObjectSuffix) -MF$(IntermediateDirectory)/game.c$(DependSuffix) -MM game.c
+
+$(IntermediateDirectory)/game.c$(PreprocessSuffix): game.c
+	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/game.c$(PreprocessSuffix) game.c
 
 $(IntermediateDirectory)/draw.c$(ObjectSuffix): draw.c $(IntermediateDirectory)/draw.c$(DependSuffix)
 	$(CC) $(SourceSwitch) "C:/Users/PGM/Documents/practica2_buscamines/Practica2/draw.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/draw.c$(ObjectSuffix) $(IncludePath)

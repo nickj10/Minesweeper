@@ -86,7 +86,7 @@ void drawContent (Taulell taulell) {
     }
 }
 
-/*void drawFlags (Taulell taulell) {
+void drawFlags (Taulell taulell) {
     int i, j;
     Flagcoord aux;
     Elemento e;
@@ -111,8 +111,8 @@ void drawContent (Taulell taulell) {
             }
         }
     }
-}*/
-void drawFlags (Taulell taulell) {
+}
+/*void drawFlags (Taulell taulell) {
     Flagcoord aux;
     Elemento e;
     int i, j, k;
@@ -140,7 +140,7 @@ void drawFlags (Taulell taulell) {
         }
     }
 
-}
+}*/
 
 void drawGameover (int width, int height) {
     Coordenada rect1;

@@ -7,7 +7,9 @@ Flags FLAG_crea () {
 		printf ("Error en crear la llista de les banderes.\n");
 	}
 	else {
-		f.ant = f.pri;
+		f.pri->e.fila = -2;
+        f.pri->e.col = -2;
+        f.ant = f.pri;
 		f.pri->sig = NULL;
 	}
 	return f;
@@ -44,12 +46,13 @@ void FLAG_borrar (Flags *f) {
 Elemento FLAG_consultar (Flags f) {
     Elemento e;
     if (f.ant->sig == NULL) {
+        printf ("Error al consultar, PDI fora de la llista.\n");
         e.col = -1;
         e.fila = -1;
     }
     else {
-        e.col = f.ant->e.col;
-        e.fila = f.ant->e.fila;
+        e.col = f.ant->sig->e.col;
+        e.fila = f.ant->sig->e.fila;
     }
     return e;
 }
@@ -64,7 +67,7 @@ void FLAG_irInicio (Flags *f) {
 
 void FLAG_avanzar (Flags *f) {
     if (f->ant->sig == NULL) {
-        printf ("Error en anvanzar en la lista.\n");
+        printf ("Error en avancar en la llista.\n");
     }
     else {
         f->ant = f->ant->sig;
@@ -79,19 +82,21 @@ int FLAG_existeElemento(Flags *f, Elemento e) {
     Elemento aux;
     int trobat = 0;
     if (FLAG_vacia(*f)) {
-        //printf ("\nEsta vacia la lista de banderas.\n");
+        printf ("\nEsta vacia la lista de banderas.\n");
     }
     else {
         FLAG_irInicio(f);
         while (!FLAG_final(*f) && !trobat) {
             aux = FLAG_consultar(*f);
-            //printf ("elem de la lista: f-%d c-%d, elemento pasado: f-%d c-%d\n", aux.fila, aux.col, e.fila, e.col);
+            printf ("elem de la lista: f-%d c-%d, elemento pasado: f-%d c-%d\n", aux.fila, aux.col, e.fila, e.col);
             if (aux.col == e.col && aux.fila == e.fila) {
                 trobat = 1;
+                printf ("found: f-%d c-%d\n", aux.fila, aux.col);
             }
-            if (!trobat) {
+            //printf ("i am in and tryna find the thing.\n");
+            //if (!trobat) {
                 FLAG_avanzar(f);
-            }
+            //}
         }
     }
     

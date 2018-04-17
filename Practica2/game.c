@@ -206,11 +206,11 @@ void putFlag (Cursor cursor, Taulell *taulell, int *total) {
         FLAG_inserir(&taulell->lista, e);
         (*total)++;
     }
+    printf ("Total banderes: %d\n", *total);
 }
 
 int startGame (Taulell *taulell, Player *player) {
     int nSortir = 0;
-    //int header_size = 100;
     int width, height;
     Cursor cursor;
     //Flag *flags;
