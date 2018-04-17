@@ -39,7 +39,7 @@ void FLAG_borrar (Flags *f) {
     if (f->ant->sig != NULL) {
         aux = f->ant->sig;
         f->ant->sig = aux->sig;
-        free (aux);
+        free(aux);
     }
 }
 
@@ -88,15 +88,13 @@ int FLAG_existeElemento(Flags *f, Elemento e) {
         FLAG_irInicio(f);
         while (!FLAG_final(*f) && !trobat) {
             aux = FLAG_consultar(*f);
-            printf ("elem de la lista: f-%d c-%d, elemento pasado: f-%d c-%d\n", aux.fila, aux.col, e.fila, e.col);
+            //printf ("elem de la lista: f-%d c-%d, elemento pasado: f-%d c-%d\n", aux.fila, aux.col, e.fila, e.col);
             if (aux.col == e.col && aux.fila == e.fila) {
                 trobat = 1;
-                printf ("found: f-%d c-%d\n", aux.fila, aux.col);
             }
-            //printf ("i am in and tryna find the thing.\n");
-            //if (!trobat) {
+            if (!trobat) {
                 FLAG_avanzar(f);
-            //}
+            }
         }
     }
     
