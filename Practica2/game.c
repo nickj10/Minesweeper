@@ -5,18 +5,12 @@
  *      tenen a veure amb la lògica del joc.
  * @Autor: Nicole Marie Jimenez Burayag
  * @Data creacio: 26/03/2018
- * @Data ultima modificacio: 17/04/2018
+ * @Data ultima modificacio: 08/05/2018
  * 
  ********************************************************/
  
 #include "game.h"
 #include "draw.h"
-
-void fflushnou () {
-    char buffer[20];   
-    fgets (buffer,20,stdin);
-    //while((getchar()) != '\n);
-}
 
 int sacarNumero (char *aux) {
     int num = 0;
@@ -81,20 +75,7 @@ Taulell sacarTaulell (FILE *f_taulell) {
         taulell.turned[i] = (int*)calloc(taulell.col, sizeof(int));
     }
     
-    /*printf ("GIR:\n");
-    for (i = 0; i < taulell.fila; i++) {
-        for (j = 0; j < taulell.col; j++)
-            printf ("%d", taulell.turned[i][j]);
-        printf ("\n");
-    }*/
-    
-    // Inicialitzar les banderes
-    /*taulell.flags_coord = (Flagcoord**)malloc(sizeof(Flagcoord*) * taulell.fila);
-    for (i = 0; i < taulell.fila; i++) {
-        taulell.flags_coord[i] = (Flagcoord*)malloc(taulell.col * sizeof(Flagcoord));
-    }*/
     taulell.lista = FLAG_crea();
-    printf ("Se ha creado la lista.\n");
     return taulell;
 }
 
@@ -109,6 +90,8 @@ void initCursor (Cursor *cur) {
 
 void moveCursor (Cursor *cursor, int direction, int height, int width) {
     Cursor aux;
+    
+    // Calculem les noves coordenades dependent de la direccio a on volem moure el cursor
     switch (direction) {
         case UP: // UP
             aux.coord1.y = cursor->coord1.y - (SQUARE_SIZE + 1);
@@ -173,9 +156,13 @@ int turnSquare (Cursor cursor, Taulell *taulell, int *girada) {
     aux.fila = cursor.row;
     // Indiquem que la casella esta girada
     if (!FLAG_existeElemento(&taulell->lista, aux)) {
-        taulell->turned[cursor.row][cursor.column] = 1;
-        (*girada)++;
-        printf ("Num girades: %d\n", *girada);
+        // Si ja esta girada, no es realitzara cap accio
+        if (!taulell->turned[cursor.row][cursor.column]) {
+            taulell->turned[cursor.row][cursor.column] = 1;
+            (*girada)++;
+        }
+        
+        // Si s'ha girat una casella amb una mina, es giraran totes les caselles
         if (taulell->mines[cursor.row][cursor.column] == 'M') {
             turnAllSquares (taulell);
             gameover = 1;
@@ -206,7 +193,6 @@ int startGame (Taulell *taulell, Player *player) {
     int nSortir = 0;
     int width, height;
     Cursor cursor;
-    //Flag *flags;
     int gameover = 0;
     int total_flags = 0;
     int girades = 0;
@@ -218,9 +204,6 @@ int startGame (Taulell *taulell, Player *player) {
   
     // Inicialitzem el cursor i els flags
     initCursor (&cursor);
-    
-    printf ("c:%d f:%d m:%d\n", taulell->col, taulell->fila, taulell->num_mines);
-    printf ("w: %d h: %d\n", width, height);
     
     float t1, t0;
     t0 = (float) clock();
@@ -237,7 +220,6 @@ int startGame (Taulell *taulell, Player *player) {
         t1 = (float) clock();
         
         if (((girades + total_flags) == taulell->total_squares) && (total_flags == taulell->num_mines)) {
-            printf ("girades: %d total flags: %d total mines: %d\n", girades, total_flags, taulell->num_mines);
             gameover = 1;
             win = 1;
         }
@@ -255,12 +237,8 @@ int startGame (Taulell *taulell, Player *player) {
         drawFlags(*taulell);
 
         if (gameover) {
-            //if (win) {
-            //    al_draw_textf(LS_allegro_get_font(EXTRA_LARGE),LS_allegro_get_color(BLACK),width/3,height/2,0,"%s","HAS GUANYAT!");
-            //}
-            //else {
+                // Si ja s'ha acabat la partida, es mostra un missatge depenent si s'ha guanyat o no
                 drawGameover(*player, *taulell, width, height, win);
-            //}
         }
         else {
             // No es pot fer res més si ja s'ha acabat la partida
@@ -318,21 +296,16 @@ void freeMemoria (Taulell *taulell, Player *player) {
     int i;
     for (i = 0; i < taulell->fila; i++) {
         free(taulell->mines[i]);
+        taulell->mines[i] = NULL;
     }
     free (taulell->mines);
     
     for (i = 0; i < taulell->fila; i++) {
         free(taulell->turned[i]);
+        taulell->turned[i] = NULL;
     }
     free (taulell->turned);
-    
-    /*for (i = 0; i < taulell->fila; i++) {
-        free(taulell->flags_coord[i]);
-    }
-    free (taulell->flags_coord);*/
-    
     free (player->nom_player);
     free (player->nom_taulell);
-    
-    //FLAG_destruye(&taulell->lista);
+    FLAG_destruye(&taulell->lista);
 }

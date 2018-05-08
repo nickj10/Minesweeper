@@ -4,7 +4,7 @@
  *      el cos del jos, és a dir, el menu principal.
  * @Autor: Nicole Marie Jimenez Burayag
  * @Data creacio: 17/03/2018
- * @Data ultima modificacio: 17/04/2018
+ * @Data ultima modificacio: 08/05/2018
  * 
  ********************************************************/
 
@@ -33,7 +33,7 @@ int main () {
         scanf ("%c", &opcio);
         
         // Netegem el buffer perquè no ens agafi la \n
-        fflushnou ();
+        while((getchar()) != '\n');
 		
 		switch (opcio) {
 			case '1': // Nova partida

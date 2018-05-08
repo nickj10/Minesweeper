@@ -5,7 +5,7 @@
  *      pintar les diferents parts del joc a la pantalla.
  * @Autor: Nicole Marie Jimenez Burayag
  * @Data creacio: 27/03/2018
- * @Data ultima modificacio: 17/04/2018
+ * @Data ultima modificacio: 08/05/2018
  * 
  ********************************************************/
 
@@ -47,9 +47,7 @@ void drawSquares (Taulell taulell) {
             else {
                 if (taulell.turned[i_fil][j_col] == 1) {
                     if (taulell.mines[i_fil][j_col] == 'M') {
-                        //if (!taulell.flags[i_fil][j_col].activada) {
                             al_draw_filled_rectangle (x1, y1, x2, y2,LS_allegro_get_color(RED));
-                        //}
                     }
                     else {
                         al_draw_filled_rectangle (x1, y1, x2, y2,LS_allegro_get_color(WHITE));
@@ -78,7 +76,7 @@ void drawContent (Taulell taulell) {
             coord.x = (SQUARE_SIZE / 3) + j * (SQUARE_SIZE + 1);
             coord.y = (SQUARE_SIZE / 3) + HEADER_SIZE + i * (SQUARE_SIZE + 1);
             if (taulell.turned[i][j]) {
-                if (taulell.mines[i][j] != 'M' && taulell.mines[i][j] != '0') {
+                if (taulell.mines[i][j] != 'M') {
                     al_draw_textf(LS_allegro_get_font(EXTRA_LARGE),LS_allegro_get_color(BLACK),coord.x,coord.y,0,"%c", taulell.mines[i][j]);
                 }
             }
@@ -124,8 +122,6 @@ void drawGameover (Player player, Taulell taulell, int width, int height, int wi
     rect1.y = height / 3.0;
     rect2.x = width - (width / 5.0);
     rect2.y = height - (height / 3.0);
-    //printf ("w: %d, h: %d\n", width, height);
-    //printf ("dim rect: %d %d %d %d\n", rect1.x, rect1.y, rect2.x, rect2.y);
     al_draw_filled_rectangle (rect1.x, rect1.y, rect2.x, rect2.y,LS_allegro_get_color(BLACK));
     al_draw_rectangle (rect1.x - 2, rect1.y - 2, rect2.x + 2, rect2.y + 2,LS_allegro_get_color(BLUE),2);
     if (width < 250) {
@@ -145,7 +141,6 @@ void drawGameover (Player player, Taulell taulell, int width, int height, int wi
     nom = gameover + 50;
     puntuacio = nom + 30;
   
-    //al_draw_textf(LS_allegro_get_font(size),LS_allegro_get_color(RED),width/2.8,height/2 - 20,0,"%s","GAMEOVER");
     if (win) {
         al_draw_textf(LS_allegro_get_font(size),LS_allegro_get_color(RED),width/3.5, gameover,0,"%s","HAS GUANYAT!");
     }

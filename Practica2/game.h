@@ -5,7 +5,7 @@
  *      funcions del mòdul GAME.
  * @Autor: Nicole Marie Jimenez Burayag
  * @Data creacio: 26/03/2018
- * @Data ultima modificacio: 03/04/2018
+ * @Data ultima modificacio: 08/05/2018
  * 
  ********************************************************/
 
@@ -38,10 +38,6 @@ typedef struct {
 
 
 typedef struct {
-    //int activada;
-    //int row;
-    //int column;
-    //Elemento e;
     Coordenada coord1;
     Coordenada coord2;
     Coordenada coord3;
@@ -54,23 +50,16 @@ typedef struct {
     int total_squares;
     char **mines;
     int **turned;
-    //Flagcoord **flags_coord;
     Flags lista;
 } Taulell;
 
 typedef struct {
-    //int x1;
-    //int y1;
-    //int x2;
-    //int y2;
     Coordenada coord1;
     Coordenada coord2;
     int row;
     int column;
 } Cursor;
 
-
-void fflushnou ();
 int myAtoi (char *num);
 Taulell sacarTaulell (FILE *f_taulell);
 void initCursor (Cursor *cur);
