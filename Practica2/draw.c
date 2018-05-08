@@ -113,10 +113,13 @@ void drawFlags (Taulell taulell) {
     }
 }
 
-void drawGameover (int width, int height) {
+void drawGameover (Player player, Taulell taulell, int width, int height, int win) {
     Coordenada rect1;
     Coordenada rect2;
     int size;
+    int gameover, nom, puntuacio;
+    
+    // calculem les coordenades del rectangle
     rect1.x = width / 5.0;
     rect1.y = height / 3.0;
     rect2.x = width - (width / 5.0);
@@ -125,17 +128,30 @@ void drawGameover (int width, int height) {
     //printf ("dim rect: %d %d %d %d\n", rect1.x, rect1.y, rect2.x, rect2.y);
     al_draw_filled_rectangle (rect1.x, rect1.y, rect2.x, rect2.y,LS_allegro_get_color(BLACK));
     al_draw_rectangle (rect1.x - 2, rect1.y - 2, rect2.x + 2, rect2.y + 2,LS_allegro_get_color(BLUE),2);
-    if (width < 200) {
-        size = NORMAL;
+    if (width < 250) {
+        size = SMALL;
     }
     else {
-        if (width < 500) {
-            size = LARGE;
+        if (width < 450) {
+            size = NORMAL;
         }
         else {
-            size = EXTRA_LARGE;
+            size = LARGE;
             
         }
     }
-    al_draw_textf(LS_allegro_get_font(size),LS_allegro_get_color(RED),width/3,height/2 - 20,0,"%s","GAMEOVER");
+    
+    gameover = height/2.8;
+    nom = gameover + 50;
+    puntuacio = nom + 30;
+  
+    //al_draw_textf(LS_allegro_get_font(size),LS_allegro_get_color(RED),width/2.8,height/2 - 20,0,"%s","GAMEOVER");
+    if (win) {
+        al_draw_textf(LS_allegro_get_font(size),LS_allegro_get_color(RED),width/3.5, gameover,0,"%s","HAS GUANYAT!");
+    }
+    else {
+        al_draw_textf(LS_allegro_get_font(size),LS_allegro_get_color(RED),width/2.8, gameover,0,"%s","GAMEOVER!");
+    }
+    al_draw_textf(LS_allegro_get_font(SMALL),LS_allegro_get_color(WHITE),width/3.5, nom,0,"Nom del jugador: %s", player.nom_player);
+    al_draw_textf(LS_allegro_get_font(SMALL),LS_allegro_get_color(WHITE),width/3.5,puntuacio,0,"Puntuacio: %d", player.temps * taulell.num_mines);
 }

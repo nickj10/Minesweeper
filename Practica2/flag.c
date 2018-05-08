@@ -7,7 +7,7 @@
  *      i la fila on està cadascuna d'elles.
  * @Autor: Nicole Marie Jimenez Burayag
  * @Data creacio: 16/04/2018
- * @Data ultima modificacio: 17/04/2018
+ * @Data ultima modificacio: 24/04/2018
  * 
  ********************************************************/
 
@@ -90,10 +90,8 @@ int FLAG_final (Flags f) {
 int FLAG_existeElemento(Flags *f, Elemento e) {
     Elemento aux;
     int trobat = 0;
-    if (FLAG_vacia(*f)) {
-        printf ("La llista de banderes esta buida.\n");
-    }
-    else {
+    // nomes ho executa si la llista no esta buida
+    if (!FLAG_vacia(*f)) {
         FLAG_irInicio(f);
         while (!FLAG_final(*f) && !trobat) {
             aux = FLAG_consultar(*f);

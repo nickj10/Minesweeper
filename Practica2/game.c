@@ -81,12 +81,12 @@ Taulell sacarTaulell (FILE *f_taulell) {
         taulell.turned[i] = (int*)calloc(taulell.col, sizeof(int));
     }
     
-    printf ("GIR:\n");
+    /*printf ("GIR:\n");
     for (i = 0; i < taulell.fila; i++) {
         for (j = 0; j < taulell.col; j++)
             printf ("%d", taulell.turned[i][j]);
         printf ("\n");
-    }
+    }*/
     
     // Inicialitzar les banderes
     /*taulell.flags_coord = (Flagcoord**)malloc(sizeof(Flagcoord*) * taulell.fila);
@@ -175,6 +175,7 @@ int turnSquare (Cursor cursor, Taulell *taulell, int *girada) {
     if (!FLAG_existeElemento(&taulell->lista, aux)) {
         taulell->turned[cursor.row][cursor.column] = 1;
         (*girada)++;
+        printf ("Num girades: %d\n", *girada);
         if (taulell->mines[cursor.row][cursor.column] == 'M') {
             turnAllSquares (taulell);
             gameover = 1;
@@ -254,12 +255,12 @@ int startGame (Taulell *taulell, Player *player) {
         drawFlags(*taulell);
 
         if (gameover) {
-            if (win) {
-                al_draw_textf(LS_allegro_get_font(EXTRA_LARGE),LS_allegro_get_color(BLACK),width/3,height/2,0,"%s","HAS GUANYAT!");
-            }
-            else {
-                drawGameover(width, height);
-            }
+            //if (win) {
+            //    al_draw_textf(LS_allegro_get_font(EXTRA_LARGE),LS_allegro_get_color(BLACK),width/3,height/2,0,"%s","HAS GUANYAT!");
+            //}
+            //else {
+                drawGameover(*player, *taulell, width, height, win);
+            //}
         }
         else {
             // No es pot fer res més si ja s'ha acabat la partida
