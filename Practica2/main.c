@@ -22,6 +22,7 @@ int main () {
     Taulell taulell;
     char opcio;
     int gameover;
+    int win = 0;
     
 	while (opcio != '3') {
 		
@@ -39,44 +40,53 @@ int main () {
 			case '1': // Nova partida
 			
                 player.nom_player = (char*)malloc(sizeof(char) * MAXNOM);
-                player.nom_taulell = (char*)malloc(sizeof(char) * MAXNOM);
                 if (player.nom_player == NULL) {
                     printf ("Error en guardar memoria per el nom del jugador.\n");
                 }
                 else {
-                    do {
-                        printf ("Introdueix nom del jugador: ");
-                        gets (player.nom_player);
-                        if (strlen(player.nom_player) > MAXNOM) {
-                            printf ("Error, el nom del jugador ha de tenir com a maxim 30 caracters.\n");
-                        }
-                    } while (strlen(player.nom_player) > MAXNOM);
-                    do {
-                        printf ("Introdueix nom del fitxer: ");
-                        gets (player.nom_taulell);
-                        f_taulell = fopen (player.nom_taulell, "r");
-                        if (!f_taulell) {
-                            printf ("\nError, no es troba el fitxer %s!\n\n", player.nom_taulell);
-                        }
-                    } while (!f_taulell);
-                    
-                    printf ("Informacio correcte.\n");
-                    printf ("Processant informacio...\n");
-                    taulell = sacarTaulell (f_taulell);
-                    printf ("Partida iniciada correctament.\n");
-                    player.temps = 0;
-                    gameover = startGame (&taulell, &player);
-                    if (gameover) {
-                        player.temps *= taulell.num_mines;
-                        printf ("\nEl jugador: %s\n", player.nom_player);
-                        printf ("Puntuacio: %d\n\n", player.temps);
-                        printf ("Partida finalitzada correctament!\n");
-                        addRanking (player);
+                    player.nom_taulell = (char*)malloc(sizeof(char) * MAXNOM);
+                    if (player.taulell == NULL) {
+                        printf ("Error en guardar memoria per el nom del jugador.\n");
                     }
                     else {
-                        printf ("\nPartida finalitzada per jugador!\n");
+                        do {
+                            printf ("Introdueix nom del jugador: ");
+                            gets (player.nom_player);
+                            if (strlen(player.nom_player) > MAXNOM) {
+                                printf ("Error, el nom del jugador ha de tenir com a maxim 30 caracters.\n");
+                            }
+                        } while (strlen(player.nom_player) > MAXNOM);
+                        do {
+                            printf ("Introdueix nom del fitxer: ");
+                            gets (player.nom_taulell);
+                            f_taulell = fopen (player.nom_taulell, "r");
+                            if (!f_taulell) {
+                                printf ("\nError, no es troba el fitxer %s!\n\n", player.nom_taulell);
+                            }
+                        } while (!f_taulell);
+                    
+                        printf ("Informacio correcte.\n\n");
+                        printf ("Processant informacio...\n");
+                        taulell = sacarTaulell (f_taulell);
+                        printf ("Partida iniciada correctament.\n");
+                        player.temps = 0;
+                        gameover = startGame (&taulell, &player, &win);
+                        if (gameover) {
+                            player.temps *= taulell.num_mines;
+                            printf ("\nEl jugador: %s\n", player.nom_player);
+                            printf ("Puntuacio: %d\n\n", player.temps);
+                            printf ("Partida finalitzada correctament!\n");
+                            if (win) {
+                                addRanking (player);
+                            }
+                        }
+                        else {
+                            printf ("\nPartida finalitzada per jugador!\n");
+                        }
+                        freeMemoria(&taulell, &player);
                     }
-                    freeMemoria(&taulell, &player);
+                    // Reinicialitzar win
+                    win = 0;
                 }
 
                 break;

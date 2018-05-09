@@ -287,14 +287,13 @@ void putFlag (Cursor cursor, Taulell *taulell, int *total) {
 * @Retorn: Retorna un enter que indica si s'ha acabat correctament la partida
 *
 *********************************************************/
-int startGame (Taulell *taulell, Player *player) {
+int startGame (Taulell *taulell, Player *player, int *win) {
     int nSortir = 0;
     int width, height;
     Cursor cursor;
     int gameover = 0;
     int total_flags = 0;
     int girades = 0;
-    int win = 0;
     
     // Calcular les dimensions de la pantalla
     width = 81 * taulell->col + 1;
@@ -319,7 +318,7 @@ int startGame (Taulell *taulell, Player *player) {
         
         if (((girades + total_flags) == taulell->total_squares) && (total_flags == taulell->num_mines)) {
             gameover = 1;
-            win = 1;
+            *win = 1;
         }
         
         if (((t1 - t0) / (float)CLOCKS_PER_SEC >= 1) && !gameover) {
@@ -336,7 +335,7 @@ int startGame (Taulell *taulell, Player *player) {
 
         if (gameover) {
                 // Si ja s'ha acabat la partida, es mostra un missatge depenent si s'ha guanyat o no
-                drawGameover(*player, *taulell, width, height, win);
+                drawGameover(*player, *taulell, width, height, *win);
         }
         else {
             // No es pot fer res més si ja s'ha acabat la partida
