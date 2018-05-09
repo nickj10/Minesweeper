@@ -12,6 +12,14 @@
 
 #include "ranking.h"
 
+/*********************************************************
+*
+* @Finalitat: Llegir les dades dels jugadores des del fitxer
+*       de text del ranquing i mostrarlos per pantalla
+* @Parametres: --
+* @Retorn: --
+*
+*********************************************************/
 void mostrarRanking () {
     FILE *f_ranking;
     Player jugador;
@@ -39,6 +47,15 @@ void mostrarRanking () {
     }
 }
 
+/*********************************************************
+*
+* @Finalitat: Treure les dades d'un jugador
+* @Parametres: in: cad = un punter que apunta a la cadena que
+*       conté les dades d'un jugador
+* @Retorn: Retorna un registre de tipus Player on s'han guardat
+*       la informació
+*
+*********************************************************/
 Player sacarPlayer (char *cad) {
     Player jugador;
     int i_cad = 0;
@@ -51,6 +68,17 @@ Player sacarPlayer (char *cad) {
     return jugador;
 }
 
+/*********************************************************
+*
+* @Finalitat: Treure cada informació fins a trobar el delimitador
+* @Parametres: in: cad = un puntero que apunta a una cadena que
+*                   conté tota la informacio
+*               in: index = l'index de la casella en la cadena
+*                   passar per referencia
+*               in: delim = el caracter que separa la informacio
+* @Retorn: Retorna la cadena on hem guardat la informacio
+*
+*********************************************************/
 char *sacarInfo (char *cad, int *index, char delim) {
     char *info = (char*)malloc(sizeof(char) * MAXNOM);
     int i_info = 0;
@@ -63,6 +91,14 @@ char *sacarInfo (char *cad, int *index, char delim) {
     return info;
 }
 
+/*********************************************************
+*
+* @Finalitat: Afegir les dades del jugador que ha guanyat la partida
+*       en el fitxer de text del ranquing
+* @Parametres: in: jugador = el registre que conte les dades del jugador
+* @Retorn: No retorna res
+*
+*********************************************************/
 void addRanking (Player jugador) {
     FILE *f_ranking;
     
