@@ -129,7 +129,7 @@ void moveCursor (Cursor *cursor, int direction, int height, int width) {
     
 }
 
-void turnAllSquares (Taulell *taulell) {
+void flipAllSquares (Taulell *taulell) {
     int i, j;
     Elemento aux;
     for (i = 0; i < taulell->fila; i++) {
@@ -145,7 +145,7 @@ void turnAllSquares (Taulell *taulell) {
     }
 }
 
-int turnSquare (Cursor cursor, Taulell *taulell, int *girada) {
+int flipSquare (Cursor cursor, Taulell *taulell, int *girada) {
     int gameover = 0;
     Elemento aux;
     aux.col = cursor.column;
@@ -160,7 +160,7 @@ int turnSquare (Cursor cursor, Taulell *taulell, int *girada) {
         
         // Si s'ha girat una casella amb una mina, es giraran totes les caselles
         if (taulell->mines[cursor.row][cursor.column] == 'M') {
-            turnAllSquares (taulell);
+            flipAllSquares (taulell);
             gameover = 1;
         }
     }
@@ -252,7 +252,7 @@ int startGame (Taulell *taulell, Player *player) {
                 moveCursor(&cursor, RIGHT, height, width);
             }
             if (LS_allegro_key_pressed(ALLEGRO_KEY_SPACE)) {
-                gameover = turnSquare(cursor, taulell, &girades);
+                gameover = flipSquare(cursor, taulell, &girades);
             }
             
             // Posem la bandera en la casella corresponent

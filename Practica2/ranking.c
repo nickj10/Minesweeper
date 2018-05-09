@@ -35,9 +35,6 @@ void mostrarRanking () {
             printf ("%s - %s - %d\n", jugador.nom_player, jugador.nom_taulell, jugador.temps);
             fgets (buffer, MAXBUFFER, f_ranking);
         }
-        // Sacar la informacio de l'ultim jugador
-        //jugador = sacarPlayer(buffer);
-        //printf ("%s - %s - %d\n", jugador.nom_player, jugador.nom_taulell, jugador.temps);
         fclose (f_ranking);
     }
 }
