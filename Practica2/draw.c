@@ -11,6 +11,14 @@
 
 #include "draw.h"
 
+/*********************************************************
+*
+* @Finalitat: Dibuixar la capçalera de la finestra del joc
+* @Parametres:  in: player = el registre que conte les dades del jugador
+*               in: width = l'amplada de la finestra
+* @Retorn: No retorna res
+*
+*********************************************************/
 void drawHeader (Player player, int width) {
     al_draw_textf(LS_allegro_get_font(NORMAL),LS_allegro_get_color(WHITE),5,5,0,"%s","NOM:");
     al_draw_textf(LS_allegro_get_font(NORMAL),LS_allegro_get_color(WHITE),width/2,5,0,"%s","TEMPS:");
@@ -30,6 +38,14 @@ void drawHeader (Player player, int width) {
     }
 }
 
+/*********************************************************
+*
+* @Finalitat: Dibuixar les caselles del taulell
+* @Parametres:  in: taulell = el registre que conte totes les 
+*       dades del taulell
+* @Retorn: No retorna res
+*
+*********************************************************/
 void drawSquares (Taulell taulell) {
     int i_fil, j_col;
     int x1 = 1;
@@ -37,8 +53,6 @@ void drawSquares (Taulell taulell) {
     int x2 = x1 + SQUARE_SIZE;
     int y2 = y1 + SQUARE_SIZE;
     
-    //al_draw_filled_rectangle (x1, y1, x2, y2,LS_allegro_get_color(GRAY));
-    //printf ("F %d C %d\n", taulell.fila, taulell.col);
     for (i_fil = 0; i_fil < taulell.fila; i_fil++) {
         for (j_col = 0; j_col < taulell.col; j_col++) {
             if (taulell.turned[i_fil][j_col] == 0) {
@@ -64,10 +78,26 @@ void drawSquares (Taulell taulell) {
     }
 }
 
+/*********************************************************
+*
+* @Finalitat: Dibuixar lel cursor
+* @Parametres:  in: cur = el registre que conte les coordenades
+*       del cursor
+* @Retorn: No retorna res
+*
+*********************************************************/
 void drawCursor (Cursor cur) {
     al_draw_rectangle (cur.coord1.x, cur.coord1.y, cur.coord2.x, cur.coord2.y,LS_allegro_get_color(LIGHT_GREEN),1);
 }
 
+/*********************************************************
+*
+* @Finalitat: Dibuixar el contingut de cada casella girada
+* @Parametres:  in: taulell = el registre que conte totes les 
+*       dades del taulell 
+* @Retorn: No retorna res
+*
+*********************************************************/
 void drawContent (Taulell taulell) {
     int i, j;
     Coordenada coord;
@@ -84,6 +114,14 @@ void drawContent (Taulell taulell) {
     }
 }
 
+/*********************************************************
+*
+* @Finalitat: Dibuixar les banderes en el taulell
+* @Parametres:  in: taulell = el registre que conte totes les 
+*       dades del taulell 
+* @Retorn: No retorna res
+*
+*********************************************************/
 void drawFlags (Taulell taulell) {
     int i, j;
     Flagcoord aux;
@@ -111,6 +149,19 @@ void drawFlags (Taulell taulell) {
     }
 }
 
+/*********************************************************
+*
+* @Finalitat: Dibuixar el missatge de GameOver quan s'ha acabat
+*       la partida correctament
+* @Parametres:  in: taulell = el registre que conte totes les 
+*                       dades del taulell 
+*               in: player = el registre que conte les dades del jugador
+*               in: width = l'amplada de la finestra
+*               in: height = l'altura de la finestra
+*               in: win = un enter que indica si s'ha guanyat la partida o no
+* @Retorn: No retorna res
+*
+*********************************************************/
 void drawGameover (Player player, Taulell taulell, int width, int height, int win) {
     Coordenada rect1;
     Coordenada rect2;
