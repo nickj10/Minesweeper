@@ -269,13 +269,18 @@ void putFlag (Cursor cursor, Taulell *taulell, int *total) {
     if (FLAG_existeElemento(&(taulell->lista), e)) {
         // Eliminem la bandera si existeix
         FLAG_borrar(&taulell->lista);
-        (*total)--;
+        if (taulell->turned[e.fila][e.col] != 1) {
+            (*total)--;
+        }
     }
     else {
         // Afegim la bandera a la llista si no existeix
         FLAG_inserir(&taulell->lista, e);
-        (*total)++;
+        if (taulell->turned[e.fila][e.col] != 1) {
+            (*total)++;
+        }
     }
+    printf ("banderes: %d\n", *total);
 }
 
 /*********************************************************
