@@ -280,7 +280,6 @@ void putFlag (Cursor cursor, Taulell *taulell, int *total) {
             (*total)++;
         }
     }
-    printf ("banderes: %d\n", *total);
 }
 
 /*********************************************************
