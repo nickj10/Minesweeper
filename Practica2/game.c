@@ -114,6 +114,14 @@ Taulell sacarTaulell (FILE *f_taulell) {
     return taulell;
 }
 
+/*********************************************************
+*
+* @Finalitat: Inicialitzar les coordenades del cursor
+* @Parametres: in: cur = el cursor que el jugador utilitzarà
+*           en tot moment del joc
+* @Retorn: No retorna res
+*
+*********************************************************/
 void initCursor (Cursor *cur) {
     cur->coord1.x = 1;
     cur->coord1.y = HEADER_SIZE + 1;
@@ -123,6 +131,20 @@ void initCursor (Cursor *cur) {
     cur->column = 0;
 }
 
+/*********************************************************
+*
+* @Finalitat: Moure el cursor a la direcció indicada per jugador
+* @Parametres:  in: cursor = el cursor que el jugador utilitzarà
+*           en tot moment del joc
+*               in: direction = un enter que indica la direccio
+*                   cap a on es mou el cursor
+*               in: height = un enter que indica l'altura de la
+*                   finestra
+*               in: width = un enter que indica l'amplada de la
+*                   finestra
+* @Retorn: No retorna res
+*
+*********************************************************/
 void moveCursor (Cursor *cursor, int direction, int height, int width) {
     Cursor aux;
     
@@ -168,6 +190,14 @@ void moveCursor (Cursor *cursor, int direction, int height, int width) {
     
 }
 
+/*********************************************************
+*
+* @Finalitat: Girar totes les caselles del taulell
+* @Parametres:  in: taulell = conté totes les dades del taulell
+*                   del joc
+* @Retorn: No retorna res
+*
+*********************************************************/
 void flipAllSquares (Taulell *taulell) {
     int i, j;
     Elemento aux;
@@ -184,6 +214,17 @@ void flipAllSquares (Taulell *taulell) {
     }
 }
 
+/*********************************************************
+*
+* @Finalitat: Girar una casella del taulell
+* @Parametres:  in: taulell = conté totes les dades del taulell
+*                   del joc
+*               in: cursor = el cursor que indica quina casella
+*                   hem de girar
+*               in: girada = el numero de caselles girades
+* @Retorn: No retorna res
+*
+*********************************************************/
 int flipSquare (Cursor cursor, Taulell *taulell, int *girada) {
     int gameover = 0;
     Elemento aux;
@@ -206,6 +247,18 @@ int flipSquare (Cursor cursor, Taulell *taulell, int *girada) {
     return gameover;
 }
 
+/*********************************************************
+*
+* @Finalitat: Posar una bandera en una casella
+* @Parametres:  in: taulell = conté totes les dades del taulell
+*                   del joc
+*               in: cursor = el cursor que indica en quina casella
+*                   posarem la bandera
+*               in: total = el numero total de banderes en el 
+*                   taulell
+* @Retorn: No retorna res
+*
+*********************************************************/
 void putFlag (Cursor cursor, Taulell *taulell, int *total) {
     Elemento e;
     e.col = cursor.column;
@@ -224,6 +277,16 @@ void putFlag (Cursor cursor, Taulell *taulell, int *total) {
     }
 }
 
+/*********************************************************
+*
+* @Finalitat: Començar el joc i realitza totes les funcionalitats
+*       de la primera opcio del joc
+* @Parametres:  in: taulell = conté totes les dades del taulell
+*                   del joc
+*               in: player = un registre que conté les dades del jugador
+* @Retorn: Retorna un enter que indica si s'ha acabat correctament la partida
+*
+*********************************************************/
 int startGame (Taulell *taulell, Player *player) {
     int nSortir = 0;
     int width, height;
@@ -308,6 +371,14 @@ int startGame (Taulell *taulell, Player *player) {
     return gameover;
 }
 
+/*********************************************************
+*
+* @Finalitat: Convertir una cadena a un nombre enter
+* @Parametres:  in: num = una cadena que conté el nombre 
+*       enter que volem convertir
+* @Retorn: Retorna el nombre enter convertit
+*
+*********************************************************/
 int myAtoi (char *num) {
     int number = 0;
     int negatiu = 0;
@@ -327,6 +398,15 @@ int myAtoi (char *num) {
     return number;
 }
 
+/*********************************************************
+*
+* @Finalitat: Allibera l'espai de memoria que hem creat per la partida
+* @Parametres:  in: taulell = conté totes les dades del taulell
+*                   del joc
+*               in: player = un registre que conté les dades del jugador
+* @Retorn: No retorna res
+*
+*********************************************************/
 void freeMemoria (Taulell *taulell, Player *player) {
     int i;
     for (i = 0; i < taulell->fila; i++) {
