@@ -4,7 +4,7 @@
  *      el cos del jos, és a dir, el menu principal.
  * @Autor: Nicole Marie Jimenez Burayag
  * @Data creacio: 17/03/2018
- * @Data ultima modificacio: 08/05/2018
+ * @Data ultima modificacio: 09/05/2018
  * 
  ********************************************************/
 

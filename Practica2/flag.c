@@ -7,7 +7,7 @@
  *      i la fila on està cadascuna d'elles.
  * @Autor: Nicole Marie Jimenez Burayag
  * @Data creacio: 16/04/2018
- * @Data ultima modificacio: 24/04/2018
+ * @Data ultima modificacio: 09/05/2018
  * 
  ********************************************************/
 

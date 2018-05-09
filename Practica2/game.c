@@ -5,7 +5,7 @@
  *      tenen a veure amb la lògica del joc.
  * @Autor: Nicole Marie Jimenez Burayag
  * @Data creacio: 26/03/2018
- * @Data ultima modificacio: 08/05/2018
+ * @Data ultima modificacio: 09/05/2018
  * 
  ********************************************************/
  
