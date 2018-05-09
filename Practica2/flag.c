@@ -13,6 +13,13 @@
 
 #include "flag.h"
 
+/*********************************************************
+*
+* @Finalitat: Crear la llista de banderes
+* @Parametres:  --
+* @Retorn: Retorna la llista de les banderes
+*
+*********************************************************/
 Flags FLAG_crea () {
 	Flags f;
 	f.pri = (Nodo*)malloc(sizeof(Nodo));
@@ -28,6 +35,15 @@ Flags FLAG_crea () {
 	return f;
 }
 
+/*********************************************************
+*
+* @Finalitat: Afegir una bandera a la llista
+* @Parametres:  in: f = la llista de banderes passada per referencia
+*               in: e = el registre que conte les coordenades de la
+*                   bandera que volem afegir a la llista
+* @Retorn: --
+*
+*********************************************************/
 void FLAG_inserir (Flags *f, Elemento e) {
 	Nodo *aux;
 	aux = (Nodo*)malloc(sizeof(Nodo));
@@ -43,6 +59,13 @@ void FLAG_inserir (Flags *f, Elemento e) {
 	}
 }
 
+/*********************************************************
+*
+* @Finalitat: Eliminar una bandera de la llista
+* @Parametres:  in: f = la llista de banderes passada per referencia
+* @Retorn: --
+*
+*********************************************************/
 void FLAG_borrar (Flags *f) {
     Nodo *aux;
     if (f->ant->sig != NULL) {
@@ -52,6 +75,13 @@ void FLAG_borrar (Flags *f) {
     }
 }
 
+/*********************************************************
+*
+* @Finalitat: Consultar les coordenades de la bandera 
+* @Parametres:  in: f = la llista de banderes
+* @Retorn: Retorna el registre on hem guardat les coordenades de la bandera
+*
+*********************************************************/
 Elemento FLAG_consultar (Flags f) {
     Elemento e;
     if (f.ant->sig == NULL) {
@@ -66,14 +96,35 @@ Elemento FLAG_consultar (Flags f) {
     return e;
 }
 
+/*********************************************************
+*
+* @Finalitat: Mirar si la llista esta buida o no
+* @Parametres:  in: f = la llista de banderes
+* @Retorn: Retorna un enter: 1 si esta buida, 0 si no esta buida
+*
+*********************************************************/
 int FLAG_vacia (Flags f) {
     return f.pri->sig == NULL;
 }
 
+/*********************************************************
+*
+* @Finalitat: Anar al prinicipi de la llista de banderes
+* @Parametres:  in: f = la llista de banderes passada per referencia
+* @Retorn: --
+*
+*********************************************************/
 void FLAG_irInicio (Flags *f) {
     f->ant = f->pri;
 }
 
+/*********************************************************
+*
+* @Finalitat: Avançar al seguent node de la llista
+* @Parametres:  in: f = la llista de banderes passada per referencia
+* @Retorn: --
+*
+*********************************************************/
 void FLAG_avanzar (Flags *f) {
     if (f->ant->sig == NULL) {
         printf ("Error en avancar en la llista.\n");
@@ -83,10 +134,26 @@ void FLAG_avanzar (Flags *f) {
     }
 }
 
+/*********************************************************
+*
+* @Finalitat: Eliminar una bandera de la llista
+* @Parametres:  in: f = la llista de banderes
+* @Retorn: --
+*
+*********************************************************/
 int FLAG_final (Flags f) {
     return f.ant->sig == NULL;
 }
 
+/*********************************************************
+*
+* @Finalitat: Mirar si existeix la bandera en la llista
+* @Parametres:  in: f = la llista de banderes passada per referencia
+*               in: e = el registre que conte les coordenades de la
+*                   bandera que volem buscar en la llista
+* @Retorn: Retorna un enter: 1 si l'ha trobat, 0 si no l'ha trobat
+*
+*********************************************************/
 int FLAG_existeElemento(Flags *f, Elemento e) {
     Elemento aux;
     int trobat = 0;
@@ -106,6 +173,13 @@ int FLAG_existeElemento(Flags *f, Elemento e) {
     return trobat;
 }
 
+/*********************************************************
+*
+* @Finalitat: Destrueix la llista de banderes
+* @Parametres:  in: f = la llista de banderes passada per referencia
+* @Retorn: --
+*
+*********************************************************/
 void FLAG_destruye (Flags *f) {
     FLAG_irInicio(f);
     while (!FLAG_vacia(*f)) {
