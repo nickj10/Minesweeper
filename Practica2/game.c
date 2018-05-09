@@ -12,6 +12,15 @@
 #include "game.h"
 #include "draw.h"
 
+/*********************************************************
+*
+* @Finalitat: Treure un nombre d'una cadena llegida del
+*           fitxer de text del taulell y convertir-lo en un
+*           enter
+* @Parametres: in: aux = un punter que a punta a una cadena
+* @Retorn: Retorna l'enter convertit de
+*
+*********************************************************/
 int sacarNumero (char *aux) {
     int num = 0;
     int i_aux = 2, i_cad = 0;
@@ -24,9 +33,18 @@ int sacarNumero (char *aux) {
     return num;
 }
 
+/*********************************************************
+*
+* @Finalitat: Treure totes les dades del taulell 
+* @Parametres: in: f_taulell = el fitxer de text que conté
+*           les dades del taulell
+* @Retorn: Retorna el taulell inicialitzat
+*
+*********************************************************/
 Taulell sacarTaulell (FILE *f_taulell) {
     Taulell taulell;
     int i, j;
+    int error = 0;
     int i_aux;
     char *aux = (char*)malloc(sizeof(char) * MAXAUX);
 
@@ -43,13 +61,20 @@ Taulell sacarTaulell (FILE *f_taulell) {
     // Guardem memoria per al taulell
     taulell.mines = (char**)malloc(sizeof(char*) * taulell.fila);
     if (taulell.mines == NULL) {
+        error = 1;
         printf ("Error, no s'ha creat la memoria per al contingut del taulell.\n");
     }
     else {
-        for (i = 0; i < taulell.fila; i++) {
+        for (i = 0; i < taulell.fila && !error; i++) {
             taulell.mines[i] = (char*)malloc(sizeof(char) * taulell.col);
             if (taulell.mines[i] == NULL) {
                 printf ("Error, no s'ha creat la memoria per al contingut del taulell.\n");
+                error = 1;
+                i--;
+                while (i >= 0) {
+                    free (taulell.mines[i--]);
+                }
+                free (taulell.mines);
             }
         }
     }
@@ -64,11 +89,25 @@ Taulell sacarTaulell (FILE *f_taulell) {
         aux[i_aux] = '\0';
     }
     
+    error = 0;
+    
     // Inicialitzar que totes les caselles no estan girades
     // 0: no girada; 1: girada
     taulell.turned = (int**)malloc(sizeof(int*) * taulell.fila);
-    for (i = 0; i < taulell.fila; i++) {
+    if (taulell.turned == NULL) {
+        printf ("Error, no s'ha creat la memoria per a la matriu turned del taulell.\n");
+        error = 1;
+    }
+    for (i = 0; i < taulell.fila && !error; i++) {
         taulell.turned[i] = (int*)calloc(taulell.col, sizeof(int));
+        if (taulell.turned[i] == NULL) {
+            printf ("Error, no s'ha creat la memoria per a la matriu turned del taulell.\n");
+            i--;
+            while (i >= 0) {
+                free (taulell.turned[i--]);
+            }
+            free (taulell.turned);
+        }
     }
     
     taulell.lista = FLAG_crea();

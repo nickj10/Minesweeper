@@ -61,6 +61,7 @@ typedef struct {
 } Cursor;
 
 int myAtoi (char *num);
+int sacarNumero (char *aux);
 Taulell sacarTaulell (FILE *f_taulell);
 void initCursor (Cursor *cur);
 void moveCursor (Cursor *cursor, int direction, int height, int width);
