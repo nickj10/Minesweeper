@@ -15,7 +15,7 @@
 #include <stdio.h>
 #include "game.h"
 
-#define MAXBUFFER 50
+#define MAXBUFFER 100
 
 char *sacarInfo (char *cad, int *index, char delim);
 Player sacarPlayer (char *cad);

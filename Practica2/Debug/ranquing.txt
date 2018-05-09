@@ -1,5 +1,2 @@
-Nicole Jimenez#test.txt#400
-Kaye Ignacio#test2.txt#450
-Grace Adina#test3.txt#900nj#test2.txt#50
-nj#test.txt#660
-nj#test.txt#560
+Mary Grace#test.txt#200
+Nicole Marie#test.txt#100

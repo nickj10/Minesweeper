@@ -54,7 +54,6 @@ int main () {
                     do {
                         printf ("Introdueix nom del fitxer: ");
                         gets (player.nom_taulell);
-                        printf ("txt: %s\n", player.nom_taulell);
                         f_taulell = fopen (player.nom_taulell, "r");
                         if (!f_taulell) {
                             printf ("\nError, no es troba el fitxer %s!\n\n", player.nom_taulell);
@@ -64,7 +63,6 @@ int main () {
                     printf ("Informacio correcte.\n");
                     printf ("Processant informacio...\n");
                     taulell = sacarTaulell (f_taulell);
-                    printf ("%d - %d - %d\n", taulell.col, taulell.fila, taulell.num_mines);
                     printf ("Partida iniciada correctament.\n");
                     player.temps = 0;
                     gameover = startGame (&taulell, &player);

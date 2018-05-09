@@ -16,14 +16,11 @@ int sacarNumero (char *aux) {
     int num = 0;
     int i_aux = 2, i_cad = 0;
     char *cad = (char*)malloc(sizeof(char) * 5);
-    printf ("AUX: %s\n", aux);
-    printf ("AUX NUM: %c\n", aux[i_aux]);
     while (aux[i_aux] != '\n') {
         cad[i_cad++] = aux[i_aux++];
     }
     cad[i_cad] = '\0';
     num = myAtoi(cad);
-    printf ("num: %d\n", num);
     return num;
 }
 
@@ -65,7 +62,6 @@ Taulell sacarTaulell (FILE *f_taulell) {
             taulell.mines[i][j] = aux[i_aux++];
         }
         aux[i_aux] = '\0';
-        printf ("F%d: %s\n",i, taulell.mines[i]);
     }
     
     // Inicialitzar que totes les caselles no estan girades

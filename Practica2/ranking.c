@@ -6,7 +6,7 @@
  *      i per treure les dades del jugador.
  * @Autor: Nicole Marie Jimenez Burayag
  * @Data creacio: 26/03/2018
- * @Data ultima modificacio: 03/04/2018
+ * @Data ultima modificacio: 08/05/2018
  * 
  ********************************************************/
 
@@ -17,12 +17,15 @@ void mostrarRanking () {
     Player jugador;
     char *buffer;
     
+    // Guardem espai de memoria per al buffer
     buffer = (char*)malloc(sizeof(char) * MAXBUFFER);
+    
+    // Obrim el fitxer de ranquing
     f_ranking = fopen ("ranquing.txt","r");
     printf ("#####################################\n");
     printf ("# NOM - TAULELL - PUNTS #\n");
     printf ("#####################################\n");   
-    if (!f_ranking) {
+    if (f_ranking == NULL) {
         printf ("---- ---- ----\n");
     }
     else {
@@ -33,8 +36,9 @@ void mostrarRanking () {
             fgets (buffer, MAXBUFFER, f_ranking);
         }
         // Sacar la informacio de l'ultim jugador
-        jugador = sacarPlayer(buffer);
-        printf ("%s - %s - %d\n", jugador.nom_player, jugador.nom_taulell, jugador.temps);
+        //jugador = sacarPlayer(buffer);
+        //printf ("%s - %s - %d\n", jugador.nom_player, jugador.nom_taulell, jugador.temps);
+        fclose (f_ranking);
     }
 }
 
@@ -57,7 +61,7 @@ char *sacarInfo (char *cad, int *index, char delim) {
     while (cad[*index] != delim) {
         info[i_info++] = cad[(*index)++];
     }
-    info[i_info] = '\0';
+    info[i_info] ='\0';
     ++(*index);
     return info;
 }
@@ -71,5 +75,6 @@ void addRanking (Player jugador) {
     }
     else {
         fprintf (f_ranking, "%s#%s#%d\n", jugador.nom_player, jugador.nom_taulell, jugador.temps);
+        fclose (f_ranking);
     }
 }
