@@ -17,7 +17,7 @@
 * @Finalitat: Treure un nombre d'una cadena llegida del
 *           fitxer de text del taulell y convertir-lo en un
 *           enter
-* @Parametres: in: aux = un punter que a punta a una cadena
+* @Parametres: in: aux = un punter que apunta a una cadena
 * @Retorn: Retorna l'enter convertit de
 *
 *********************************************************/
@@ -118,7 +118,7 @@ Taulell sacarTaulell (FILE *f_taulell) {
 *
 * @Finalitat: Inicialitzar les coordenades del cursor
 * @Parametres: in: cur = el cursor que el jugador utilitzarà
-*           en tot moment del joc
+*           en tot moment del joc passat per referencia
 * @Retorn: No retorna res
 *
 *********************************************************/
@@ -135,7 +135,7 @@ void initCursor (Cursor *cur) {
 *
 * @Finalitat: Moure el cursor a la direcció indicada per jugador
 * @Parametres:  in: cursor = el cursor que el jugador utilitzarà
-*           en tot moment del joc
+*           en tot moment del joc passat per referencia
 *               in: direction = un enter que indica la direccio
 *                   cap a on es mou el cursor
 *               in: height = un enter que indica l'altura de la
@@ -193,8 +193,8 @@ void moveCursor (Cursor *cursor, int direction, int height, int width) {
 /*********************************************************
 *
 * @Finalitat: Girar totes les caselles del taulell
-* @Parametres:  in: taulell = conté totes les dades del taulell
-*                   del joc
+* @Parametres:  in: taulell = un punter que apunta al registre 
+*                   que conté totes les dades del taulell
 * @Retorn: No retorna res
 *
 *********************************************************/
@@ -217,11 +217,12 @@ void flipAllSquares (Taulell *taulell) {
 /*********************************************************
 *
 * @Finalitat: Girar una casella del taulell
-* @Parametres:  in: taulell = conté totes les dades del taulell
-*                   del joc
+* @Parametres:  in: taulell = un punter que apunta al registre 
+*                   que conté totes les dades del taulell
 *               in: cursor = el cursor que indica quina casella
 *                   hem de girar
-*               in: girada = el numero de caselles girades
+*               in: girada = el numero de caselles girades passat
+*                   per referencia
 * @Retorn: No retorna res
 *
 *********************************************************/
@@ -250,12 +251,12 @@ int flipSquare (Cursor cursor, Taulell *taulell, int *girada) {
 /*********************************************************
 *
 * @Finalitat: Posar una bandera en una casella
-* @Parametres:  in: taulell = conté totes les dades del taulell
-*                   del joc
+* @Parametres:  in: taulell = un punter que apunta al registre 
+*                   que conté totes les dades del taulell
 *               in: cursor = el cursor que indica en quina casella
 *                   posarem la bandera
 *               in: total = el numero total de banderes en el 
-*                   taulell
+*                   taulell passat per referencia
 * @Retorn: No retorna res
 *
 *********************************************************/
@@ -281,9 +282,11 @@ void putFlag (Cursor cursor, Taulell *taulell, int *total) {
 *
 * @Finalitat: Començar el joc i realitza totes les funcionalitats
 *       de la primera opcio del joc
-* @Parametres:  in: taulell = conté totes les dades del taulell
-*                   del joc
-*               in: player = un registre que conté les dades del jugador
+* @Parametres:  in: taulell = un punter que apunta al registre 
+*                   que conté totes les dades del taulell
+*               in: player = un punter que apunta a un registre 
+*                   que conté les dades del jugador
+*               in: win = un punter a un enter que indica si ha guanyat la partida
 * @Retorn: Retorna un enter que indica si s'ha acabat correctament la partida
 *
 *********************************************************/
@@ -400,9 +403,9 @@ int myAtoi (char *num) {
 /*********************************************************
 *
 * @Finalitat: Allibera l'espai de memoria que hem creat per la partida
-* @Parametres:  in: taulell = conté totes les dades del taulell
-*                   del joc
-*               in: player = un registre que conté les dades del jugador
+* @Parametres:  in: taulell = un punter que apunta al registre 
+*                   que conté totes les dades del taulell
+*               in: player = un punter a un registre que conté les dades del jugador
 * @Retorn: No retorna res
 *
 *********************************************************/
