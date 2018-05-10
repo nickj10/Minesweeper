@@ -2,3 +2,7 @@ Mary Grace#test.txt#200
 Nicole Marie#test.txt#100
 Kaye Ann#test.txt#70
 Kate#test2.txt#330
+Jas#test2.txt#270
+Jas#test.txt#80
+Jas#test.txt#390
+Jas#test.txt#580

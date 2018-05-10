@@ -47,6 +47,7 @@ int main () {
                     player.nom_taulell = (char*)malloc(sizeof(char) * MAXNOM);
                     if (player.nom_taulell == NULL) {
                         printf ("Error en guardar memoria per el nom del jugador.\n");
+                        free (player.nom_player);
                     }
                     else {
                         do {

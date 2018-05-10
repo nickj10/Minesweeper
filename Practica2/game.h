@@ -68,6 +68,7 @@ void moveCursor (Cursor *cursor, int direction, int height, int width);
 int flipSquare (Cursor cursor, Taulell *taulell, int *girada);
 void flipAllSquares (Taulell *taulell);
 void putFlag (Cursor cursor, Taulell *taulell, int *total);
+void checkGameover (Taulell taulell, int *win, int *gameover);
 int startGame (Taulell *taulell, Player *player, int *win);
 void freeMemoria (Taulell *taulell, Player *player);
 

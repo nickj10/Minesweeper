@@ -284,6 +284,34 @@ void putFlag (Cursor cursor, Taulell *taulell, int *total) {
 
 /*********************************************************
 *
+* @Finalitat: Mirar si totes les caselles sense mina ja estan girades
+* @Parametres:  in: taulell = un punter que apunta al registre 
+*                   que conté totes les dades del taulell
+*               in: win = indica si el jugador ha guanyat
+*               in: gameover = indica si la partida s'ha acabat o no
+* @Retorn: No retorna res
+*
+*********************************************************/
+void checkGameover (Taulell taulell, int *win, int *gameover) {
+    int i, j;
+    int total = 0;
+    
+    for (i = 0; i < taulell.fila; i++) {
+        for (j = 0; j < taulell.col; j++) {
+            if (taulell.mines[i][j] != 'M' && taulell.turned[i][j] == 1) {
+                total++;
+            }
+        }
+    }
+    
+    if (total == (taulell.total_squares - taulell.num_mines)) {
+        *win = 1;
+        *gameover = 1;
+    }
+}
+
+/*********************************************************
+*
 * @Finalitat: Començar el joc i realitza totes les funcionalitats
 *       de la primera opcio del joc
 * @Parametres:  in: taulell = un punter que apunta al registre 
@@ -323,11 +351,10 @@ int startGame (Taulell *taulell, Player *player, int *win) {
         }
         t1 = (float) clock();
         
-        if (((girades + total_flags) == taulell->total_squares) && (total_flags == taulell->num_mines)) {
-            gameover = 1;
-            *win = 1;
-        }
+        // Mirem si s'ha guanyat ja la partida
+        checkGameover (*taulell, win, &gameover);
         
+        // Incrementem el temps si ha passat un segon
         if (((t1 - t0) / (float)CLOCKS_PER_SEC >= 1) && !gameover) {
             ++(player->temps);
             t0 = (float) clock();
