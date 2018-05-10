@@ -304,10 +304,13 @@ void checkGameover (Taulell taulell, int *win, int *gameover) {
         }
     }
     
-    if (total == (taulell.total_squares - taulell.num_mines)) {
-        *win = 1;
-        *gameover = 1;
+    if (!(*gameover)) {
+        if (total == (taulell.total_squares - taulell.num_mines)) {
+            *win = 1;
+            *gameover = 1; 
+        }
     }
+    printf ("win: %d num_total: %d gameover: %d\n", *win, total, *gameover);
 }
 
 /*********************************************************
@@ -353,7 +356,7 @@ int startGame (Taulell *taulell, Player *player, int *win) {
         
         // Mirem si s'ha guanyat ja la partida
         checkGameover (*taulell, win, &gameover);
-        
+
         // Incrementem el temps si ha passat un segon
         if (((t1 - t0) / (float)CLOCKS_PER_SEC >= 1) && !gameover) {
             ++(player->temps);

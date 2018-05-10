@@ -6,3 +6,7 @@ Jas#test2.txt#270
 Jas#test.txt#80
 Jas#test.txt#390
 Jas#test.txt#580
+Roge#test.txt#30
+Roge#test.txt#80
+Roge#test.txt#30
+nikki#test2.txt#70

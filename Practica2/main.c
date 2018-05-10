@@ -22,7 +22,7 @@ int main () {
     Taulell taulell;
     char opcio;
     int gameover;
-    int win = 0;
+    int win;
     
 	while (opcio != '3') {
 		
@@ -38,7 +38,7 @@ int main () {
 		
 		switch (opcio) {
 			case '1': // Nova partida
-			
+                win = 0;
                 player.nom_player = (char*)malloc(sizeof(char) * MAXNOM);
                 if (player.nom_player == NULL) {
                     printf ("Error en guardar memoria per el nom del jugador.\n");
@@ -86,8 +86,6 @@ int main () {
                         }
                         freeMemoria(&taulell, &player);
                     }
-                    // Reinicialitzar win
-                    win = 0;
                 }
 
                 break;
