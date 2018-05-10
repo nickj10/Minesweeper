@@ -226,7 +226,7 @@ void flipAllSquares (Taulell *taulell) {
 * @Retorn: No retorna res
 *
 *********************************************************/
-int flipSquare (Cursor cursor, Taulell *taulell, int *girada) {
+int flipSquare (Cursor cursor, Taulell *taulell) {
     int gameover = 0;
     Elemento aux;
     aux.col = cursor.column;
@@ -236,7 +236,6 @@ int flipSquare (Cursor cursor, Taulell *taulell, int *girada) {
         // Si ja esta girada, no es realitzara cap accio
         if (!taulell->turned[cursor.row][cursor.column]) {
             taulell->turned[cursor.row][cursor.column] = 1;
-            (*girada)++;
         }
         
         // Si s'ha girat una casella amb una mina, es giraran totes les caselles
@@ -260,7 +259,7 @@ int flipSquare (Cursor cursor, Taulell *taulell, int *girada) {
 * @Retorn: No retorna res
 *
 *********************************************************/
-void putFlag (Cursor cursor, Taulell *taulell, int *total) {
+void putFlag (Cursor cursor, Taulell *taulell) {
     Elemento e;
     e.col = cursor.column;
     e.fila = cursor.row;
@@ -269,16 +268,10 @@ void putFlag (Cursor cursor, Taulell *taulell, int *total) {
     if (FLAG_existeElemento(&(taulell->lista), e)) {
         // Eliminem la bandera si existeix
         FLAG_borrar(&taulell->lista);
-        if (taulell->turned[e.fila][e.col] != 1) {
-            (*total)--;
-        }
     }
     else {
         // Afegim la bandera a la llista si no existeix
         FLAG_inserir(&taulell->lista, e);
-        if (taulell->turned[e.fila][e.col] != 1) {
-            (*total)++;
-        }
     }
 }
 
@@ -330,8 +323,6 @@ int startGame (Taulell *taulell, Player *player, int *win) {
     int width, height;
     Cursor cursor;
     int gameover = 0;
-    int total_flags = 0;
-    int girades = 0;
     
     // Calcular les dimensions de la pantalla
     width = 81 * taulell->col + 1;
@@ -390,12 +381,12 @@ int startGame (Taulell *taulell, Player *player, int *win) {
                 moveCursor(&cursor, RIGHT, height, width);
             }
             if (LS_allegro_key_pressed(ALLEGRO_KEY_SPACE)) {
-                gameover = flipSquare(cursor, taulell, &girades);
+                gameover = flipSquare(cursor, taulell);
             }
             
             // Posem la bandera en la casella corresponent
             if (LS_allegro_key_pressed(ALLEGRO_KEY_B)) {
-                putFlag(cursor, taulell, &total_flags);
+                putFlag (cursor, taulell);
             }
         }
         //Pintem la pantalla de la finestra gràfica
