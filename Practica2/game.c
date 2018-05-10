@@ -198,7 +198,7 @@ void moveCursor (Cursor *cursor, int direction, int height, int width) {
 * @Retorn: No retorna res
 *
 *********************************************************/
-void flipAllSquares (Taulell *taulell) {
+void flipAllSquares (Taulell *taulell, int win) {
     int i, j;
     Elemento aux;
     for (i = 0; i < taulell->fila; i++) {
@@ -208,8 +208,11 @@ void flipAllSquares (Taulell *taulell) {
             
             // Si hi ha una bandera en la casella, no la podem girar
             if (!FLAG_existeElemento(&taulell->lista, aux)) {
-                taulell->turned[i][j] = 1;
+                if (taulell->mines[i][j] == 'M' && !win) {
+                    taulell->turned[i][j] = 1;
+                }
             }
+            
         }
     }
 }
@@ -221,12 +224,10 @@ void flipAllSquares (Taulell *taulell) {
 *                   que conté totes les dades del taulell
 *               in: cursor = el cursor que indica quina casella
 *                   hem de girar
-*               in: girada = el numero de caselles girades passat
-*                   per referencia
 * @Retorn: No retorna res
 *
 *********************************************************/
-int flipSquare (Cursor cursor, Taulell *taulell) {
+int flipSquare (Cursor cursor, Taulell *taulell, int win) {
     int gameover = 0;
     Elemento aux;
     aux.col = cursor.column;
@@ -240,7 +241,7 @@ int flipSquare (Cursor cursor, Taulell *taulell) {
         
         // Si s'ha girat una casella amb una mina, es giraran totes les caselles
         if (taulell->mines[cursor.row][cursor.column] == 'M') {
-            flipAllSquares (taulell);
+            flipAllSquares (taulell, win);
             gameover = 1;
         }
     }
@@ -254,8 +255,6 @@ int flipSquare (Cursor cursor, Taulell *taulell) {
 *                   que conté totes les dades del taulell
 *               in: cursor = el cursor que indica en quina casella
 *                   posarem la bandera
-*               in: total = el numero total de banderes en el 
-*                   taulell passat per referencia
 * @Retorn: No retorna res
 *
 *********************************************************/
@@ -381,7 +380,7 @@ int startGame (Taulell *taulell, Player *player, int *win) {
                 moveCursor(&cursor, RIGHT, height, width);
             }
             if (LS_allegro_key_pressed(ALLEGRO_KEY_SPACE)) {
-                gameover = flipSquare(cursor, taulell);
+                gameover = flipSquare(cursor, taulell, *win);
             }
             
             // Posem la bandera en la casella corresponent
