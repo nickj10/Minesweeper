@@ -20,20 +20,20 @@
 *
 *********************************************************/
 void drawHeader (Player player, int width) {
-    al_draw_textf(LS_allegro_get_font(NORMAL),LS_allegro_get_color(WHITE),5,5,0,"%s","NOM:");
-    al_draw_textf(LS_allegro_get_font(NORMAL),LS_allegro_get_color(WHITE),width/2,5,0,"%s","TEMPS:");
+    al_draw_textf (LS_allegro_get_font(NORMAL), LS_allegro_get_color(WHITE), 5, 5, 0, "%s", "NOM:");
+    al_draw_textf (LS_allegro_get_font(NORMAL), LS_allegro_get_color(WHITE), width/2, 5, 0, "%s", "TEMPS:");
     if (strlen(player.nom_player) <= 10) {
-        al_draw_textf(LS_allegro_get_font(EXTRA_LARGE),LS_allegro_get_color(WHITE),width/15,20,0,"%s", player.nom_player);
-        al_draw_textf(LS_allegro_get_font(EXTRA_LARGE),LS_allegro_get_color(WHITE),width/2 + width/15, 20,0,"%d", player.temps);
+        al_draw_textf (LS_allegro_get_font(EXTRA_LARGE), LS_allegro_get_color(WHITE), width/15, 20, 0, "%s", player.nom_player);
+        al_draw_textf (LS_allegro_get_font(EXTRA_LARGE), LS_allegro_get_color(WHITE), width/2 + width/15, 20, 0, "%d", player.temps);
     }
     else {
         if (strlen(player.nom_player) <= 15) {
-            al_draw_textf(LS_allegro_get_font(LARGE),LS_allegro_get_color(WHITE),width/15,20,0,"%s", player.nom_player);
-            al_draw_textf(LS_allegro_get_font(LARGE),LS_allegro_get_color(WHITE),width/2 + width/15, 20,0,"%d", player.temps);
+            al_draw_textf (LS_allegro_get_font(LARGE), LS_allegro_get_color(WHITE), width/15, 20, 0, "%s", player.nom_player);
+            al_draw_textf (LS_allegro_get_font(LARGE), LS_allegro_get_color(WHITE), width/2 + width/15, 20, 0, "%d", player.temps);
         }
         else {
-            al_draw_textf(LS_allegro_get_font(NORMAL),LS_allegro_get_color(WHITE),width/15,20,0,"%s", player.nom_player);
-            al_draw_textf(LS_allegro_get_font(NORMAL),LS_allegro_get_color(WHITE),width/2 + 20, 20,0,"%d", player.temps);
+            al_draw_textf (LS_allegro_get_font(NORMAL), LS_allegro_get_color(WHITE), width/15, 20, 0, "%s", player.nom_player);
+            al_draw_textf (LS_allegro_get_font(NORMAL), LS_allegro_get_color(WHITE), width/2 + 20, 20,0, "%d", player.temps);
         }
     }
 }
@@ -53,12 +53,15 @@ void drawSquares (Taulell taulell) {
     int x2 = x1 + SQUARE_SIZE;
     int y2 = y1 + SQUARE_SIZE;
     
+    // Mirar cada casella si esta girada
     for (i_fil = 0; i_fil < taulell.fila; i_fil++) {
         for (j_col = 0; j_col < taulell.col; j_col++) {
+            // En cas de que no estigui girada, la dibuixem en gris
             if (taulell.turned[i_fil][j_col] == 0) {
                 al_draw_filled_rectangle (x1, y1, x2, y2,LS_allegro_get_color(GRAY));
             }
             else {
+                // En cas contrari, el color depen del contingut
                 if (taulell.turned[i_fil][j_col] == 1) {
                     if (taulell.mines[i_fil][j_col] == 'M') {
                             al_draw_filled_rectangle (x1, y1, x2, y2,LS_allegro_get_color(RED));
@@ -165,39 +168,49 @@ void drawFlags (Taulell taulell) {
 void drawGameover (Player player, Taulell taulell, int width, int height, int win) {
     Coordenada rect1;
     Coordenada rect2;
-    int size;
+    int size_title, size_text;
     int gameover, nom, puntuacio;
+    int height_taulell;
     
-    // calculem les coordenades del rectangle
-    rect1.x = width / 5.0;
-    rect1.y = height / 3.0;
-    rect2.x = width - (width / 5.0);
-    rect2.y = height - (height / 3.0);
-    al_draw_filled_rectangle (rect1.x, rect1.y, rect2.x, rect2.y,LS_allegro_get_color(BLACK));
-    al_draw_rectangle (rect1.x - 2, rect1.y - 2, rect2.x + 2, rect2.y + 2,LS_allegro_get_color(BLUE),2);
+    // Calculem l'altura del taulell nomes
+    height_taulell = height + HEADER_SIZE;
+    
+    // Calculem les coordenades del rectangle
+    rect1.x = width / 5;
+    rect1.y = height_taulell / 4;
+    rect2.x = width - (width / 5);
+    rect2.y = height_taulell - (height_taulell / 4);
+    
+    // Dibuixem els rectangles
+    al_draw_filled_rectangle (rect1.x, rect1.y, rect2.x, rect2.y, LS_allegro_get_color(BLACK));
+    al_draw_rectangle (rect1.x - 2, rect1.y - 2, rect2.x + 2, rect2.y + 2, LS_allegro_get_color(BLUE),2);
+    
+    // Determinem el tamany de les lletres dependent de les dimensions del taulell
     if (width < 250) {
-        size = SMALL;
+        size_title = SMALL;
+        size_text = SMALL;
     }
     else {
         if (width < 450) {
-            size = NORMAL;
+            size_title = NORMAL;
+            size_text = SMALL;
         }
         else {
-            size = LARGE;
-            
+            size_title = LARGE;
+            size_text = NORMAL;
         }
     }
-    
-    gameover = height/2.8;
-    nom = gameover + 50;
-    puntuacio = nom + 30;
+    gameover = height_taulell / 3;
+    nom = height_taulell / 2;
+    puntuacio = nom + height_taulell * (1/8.0);
   
+    // Dibuixem per pantalla les dades del jugador i el missatge de finalització de la partida
     if (win) {
-        al_draw_textf(LS_allegro_get_font(size),LS_allegro_get_color(RED),width/3.5, gameover,0,"%s","HAS GUANYAT!");
+        al_draw_textf (LS_allegro_get_font(size_title), LS_allegro_get_color(RED), width/3.5, gameover, 0, "%s", "HAS GUANYAT!");
     }
     else {
-        al_draw_textf(LS_allegro_get_font(size),LS_allegro_get_color(RED),width/2.8, gameover,0,"%s","GAMEOVER!");
+        al_draw_textf (LS_allegro_get_font(size_title), LS_allegro_get_color(RED), width/2.8, gameover, 0, "%s", "GAMEOVER!");
     }
-    al_draw_textf(LS_allegro_get_font(SMALL),LS_allegro_get_color(WHITE),width/3.5, nom,0,"Nom del jugador: %s", player.nom_player);
-    al_draw_textf(LS_allegro_get_font(SMALL),LS_allegro_get_color(WHITE),width/3.5,puntuacio,0,"Puntuacio: %d", player.temps * taulell.num_mines);
+    al_draw_textf (LS_allegro_get_font(size_text), LS_allegro_get_color(WHITE), width/3.5, nom, 0, "Nom del jugador: %s", player.nom_player);
+    al_draw_textf (LS_allegro_get_font(size_text), LS_allegro_get_color(WHITE), width/3.5, puntuacio, 0, "Puntuacio: %d", player.temps * taulell.num_mines);
 }
