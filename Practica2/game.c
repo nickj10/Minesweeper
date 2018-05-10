@@ -304,13 +304,13 @@ void checkGameover (Taulell taulell, int *win, int *gameover) {
         }
     }
     
+    // Nomes mirem si ja s'han girat totes les caselles sense mina si encara no s'ha acabat la partida
     if (!(*gameover)) {
         if (total == (taulell.total_squares - taulell.num_mines)) {
             *win = 1;
             *gameover = 1; 
         }
     }
-    printf ("win: %d num_total: %d gameover: %d\n", *win, total, *gameover);
 }
 
 /*********************************************************
