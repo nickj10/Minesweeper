@@ -195,6 +195,7 @@ void moveCursor (Cursor *cursor, int direction, int height, int width) {
 * @Finalitat: Girar totes les caselles del taulell
 * @Parametres:  in: taulell = un punter que apunta al registre 
 *                   que conté totes les dades del taulell
+*               in: win = un entero que indica si el jugador ha guanyat
 * @Retorn: No retorna res
 *
 *********************************************************/
@@ -224,6 +225,7 @@ void flipAllSquares (Taulell *taulell, int win) {
 *                   que conté totes les dades del taulell
 *               in: cursor = el cursor que indica quina casella
 *                   hem de girar
+*               in: win = un entero que indica si el jugador ha guanyat
 * @Retorn: No retorna res
 *
 *********************************************************/
