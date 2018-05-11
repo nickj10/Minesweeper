@@ -195,11 +195,10 @@ void moveCursor (Cursor *cursor, int direction, int height, int width) {
 * @Finalitat: Girar totes les caselles del taulell
 * @Parametres:  in: taulell = un punter que apunta al registre 
 *                   que conté totes les dades del taulell
-*               in: win = un entero que indica si el jugador ha guanyat
 * @Retorn: No retorna res
 *
 *********************************************************/
-void flipAllSquares (Taulell *taulell, int win) {
+void flipAllSquares (Taulell *taulell) {
     int i, j;
     Elemento aux;
     for (i = 0; i < taulell->fila; i++) {
@@ -209,9 +208,7 @@ void flipAllSquares (Taulell *taulell, int win) {
             
             // Si hi ha una bandera en la casella, no la podem girar
             if (!FLAG_existeElemento(&taulell->lista, aux)) {
-                if (taulell->mines[i][j] == 'M' && !win) {
                     taulell->turned[i][j] = 1;
-                }
             }
             
         }
@@ -225,11 +222,10 @@ void flipAllSquares (Taulell *taulell, int win) {
 *                   que conté totes les dades del taulell
 *               in: cursor = el cursor que indica quina casella
 *                   hem de girar
-*               in: win = un entero que indica si el jugador ha guanyat
 * @Retorn: No retorna res
 *
 *********************************************************/
-int flipSquare (Cursor cursor, Taulell *taulell, int win) {
+int flipSquare (Cursor cursor, Taulell *taulell) {
     int gameover = 0;
     Elemento aux;
     aux.col = cursor.column;
@@ -243,7 +239,7 @@ int flipSquare (Cursor cursor, Taulell *taulell, int win) {
         
         // Si s'ha girat una casella amb una mina, es giraran totes les caselles
         if (taulell->mines[cursor.row][cursor.column] == 'M') {
-            flipAllSquares (taulell, win);
+            flipAllSquares (taulell);
             gameover = 1;
         }
     }
@@ -382,7 +378,7 @@ int startGame (Taulell *taulell, Player *player, int *win) {
                 moveCursor(&cursor, RIGHT, height, width);
             }
             if (LS_allegro_key_pressed(ALLEGRO_KEY_SPACE)) {
-                gameover = flipSquare(cursor, taulell, *win);
+                gameover = flipSquare(cursor, taulell);
             }
             
             // Posem la bandera en la casella corresponent
