@@ -1,16 +1,4 @@
 Mary Grace#test.txt#200
 Nicole Marie#test.txt#100
 Kaye Ann#test.txt#70
-Kate#test2.txt#330
-Jas#test2.txt#270
-Jas#test.txt#80
-Jas#test.txt#390
-Jas#test.txt#580
-Roge#test.txt#30
-Roge#test.txt#80
-Roge#test.txt#30
-nikki#test2.txt#70
-Jas#test2.txt#70
-Jas#test2.txt#60
-Jas#test2.txt#90
-Jas#test2.txt#50
+

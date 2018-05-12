@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Session Name="C:\Users\PGM\Documents\practica2_buscamines\Practica2\Practica2.workspace">
-  <int Value="4" Name="m_selectedTab"/>
+  <int Value="5" Name="m_selectedTab"/>
   <wxString Value="C:\Users\PGM\Documents\practica2_buscamines\Practica2\Practica2.workspace" Name="m_workspaceName"/>
   <TabInfoArray Name="TabInfoArray">
     <TabInfo>
@@ -33,15 +33,15 @@
     </TabInfo>
     <TabInfo>
       <wxString Value="C:\Users\PGM\Documents\practica2_buscamines\Practica2\game.c" Name="FileName"/>
-      <int Value="372" Name="FirstVisibleLine"/>
-      <int Value="382" Name="CurrentLine"/>
+      <int Value="340" Name="FirstVisibleLine"/>
+      <int Value="351" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>
     <TabInfo>
       <wxString Value="C:\Users\PGM\Documents\practica2_buscamines\Practica2\game.h" Name="FileName"/>
       <int Value="61" Name="FirstVisibleLine"/>
-      <int Value="67" Name="CurrentLine"/>
+      <int Value="68" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>
